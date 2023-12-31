@@ -48,13 +48,6 @@
     var splash = true;
 
     async function splashScreen() {
-      const response = await fetch(`https://zenquotes.io/api/today`, {
-        method: 'GET'
-      })
-
-      quote = await response.json();
-      console.log(quote)
-
       await sleep(5000);
       splash = false;
     }

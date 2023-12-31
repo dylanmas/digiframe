@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'SF Compact Display Regular';
+    src: url(lib/SF-Compact-Text-Regular.ttf);
+}
+
 html {
     background-color: rgb(87, 87, 87);
+    font-family: 'SF Compact Display Regular';
 }

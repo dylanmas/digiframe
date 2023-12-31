@@ -85,7 +85,7 @@ export async function POST(request) {
         if (stdout == "Already up to date.\n") {
 
 
-          exec("npm run build", (error, stdout, stderr) => {
+          exec("src/lib/update.sh", (error, stdout, stderr) => {
             if (error) {
               console.log(error);
               return;
@@ -95,20 +95,7 @@ export async function POST(request) {
               return;
             }
             console.log(stdout);
-            
-
-            exec("systemctl reboot", (error, stdout, stderr) => {
-              if (error) {
-                console.log(error);
-                return;
-              }
-              if (stderr) {
-                console.log(stderr);
-                return;
-              }
-              console.log(stdout);
-            });
-
+         
 
           });
 

@@ -81,6 +81,10 @@
             qotd = data.output.imagedata.qotd;
             ytvidid = data.output.imagedata.ytvidid
 
+            if (source == "update") {
+              customizationMode = 1;
+            }
+
             console.log(url);
             await sleep(1000);
         }

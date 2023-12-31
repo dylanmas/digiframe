@@ -72,6 +72,8 @@ export async function POST(request) {
       break;
 
     case "update":
+      data.imagedata.source = request.url.searchParams.get("data");
+
       exec("git pull", (error, stdout, stderr) => {
         if (error) {
           console.log(error);

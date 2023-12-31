@@ -83,7 +83,7 @@ export async function POST(request) {
         }
         console.log(stdout);
         if (!stdout.includes("Already up to date.")) {
-          exec("src/lib/update.sh", (error, stdout, stderr) => {
+          exec("digiframe-update", (error, stdout, stderr) => {
             if (error) {
               console.log(error);
               return;

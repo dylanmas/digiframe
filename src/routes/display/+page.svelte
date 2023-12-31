@@ -3,6 +3,7 @@
     import fs from 'fs/promises';
     import { json } from '@sveltejs/kit'
     import path from 'path'
+    import isOnline from 'is-online';
 
     var foo = false;
     var foo1 = false;
@@ -31,6 +32,8 @@
 
     var customizationMode = false;
     var config = {};
+
+    var isconn = true;
     
     onMount(async () => {
         fileRead();
@@ -48,7 +51,14 @@
     var splash = true;
 
     async function splashScreen() {
-      await sleep(5000);
+      await sleep(4000);
+      if (source == "update") {
+        const response = await fetch(`/api/${"image"}/?category=${"source"}&data=${"Unsplash"}&subcategory=${""}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        })
+      }
+      await sleep(1000);
       splash = false;
     }
     
@@ -85,7 +95,8 @@
               customizationMode = 1;
             }
 
-            console.log(url);
+            isconn = await isOnline();
+
             await sleep(1000);
         }
     }
@@ -270,6 +281,54 @@
           </div>
         </div>
     </div>
+</div>
+
+<div class="{ isconn == true ? "opacity-0" : "opacity-100" } transition-all duration-500 overflow-clip">
+  <div class="bg-neutral-700 w-full h-[100vh]">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[50vw] scale-[300%] text-neutral-900">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z" />
+    </svg>
+  </div>
+  
+  <div class="absolute bottom-0 flex w-full duration-500 transition-all">
+      <div class="mx-10 w-full">
+          <div class="rounded-3xl my-10 shadow-lg mx-auto bg-neutral-800 gap-5 p-5 flex flex-col text-white items-center">
+            <h1 class="font-bold text-white text-5xl text-center">
+                Internet connection lost.
+            </h1>
+            <h1>If you need to change the internet settings on your DigiFrame, you can follow these steps:</h1>
+            <div class="w-full flex gap-2 items-center">
+                <div class="text-2xl font-bold bg-neutral-600 p-1 w-10 h-10 text-center rounded-full ml-auto">
+                    1
+                </div>
+                <h1 class="text-white text-xl text-center mr-auto">
+                    Use another device to connect to the WiFi network: <b>DigiFrame-313</b> 
+                </h1>
+            </div>
+            <div class="w-full flex gap-2 items-center">
+                <div class="text-2xl font-bold bg-neutral-600 p-1 w-10 h-10 text-center rounded-full ml-auto">
+                    2
+                </div>
+                <h1 class="text-white text-xl text-center mr-auto">
+                    Open a browser and enter the code show below into the webpage:
+                </h1>
+            </div>
+            <div class="w-full flex gap-2 items-center">
+                <div class="text-4xl font-bold text-center rounded-full mx-auto">
+                    3C25-6F89
+                </div>
+            </div>
+            <div class="w-full flex gap-2 items-center">
+                <div class="text-2xl font-bold bg-neutral-600 p-1 w-10 h-10 text-center rounded-full ml-auto">
+                    3
+                </div>
+                <h1 class="text-white text-xl text-center mr-auto">
+                    On the webpage, configure WiFi settings to reconnect your frame.
+                </h1>
+            </div>
+          </div>
+      </div>
+  </div>
 </div>
 
 <style>

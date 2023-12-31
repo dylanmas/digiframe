@@ -18,6 +18,7 @@
 	"type": "module",
 	"dependencies": {
 		"autoprefixer": "^10.4.16",
+		"is-online": "^10.0.0",
 		"pkg": "^5.8.1",
 		"postcss": "^8.4.32",
 		"svelte-lite-youtube-embed": "^1.1.0",

@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import { json } from '@sveltejs/kit'
 import path from 'path';
+import { exec } from "child_process";
 
 // Defining the path to the JSON file
 const filePath = path.join(process.cwd(), "src/lib", "preferences.json");
@@ -31,7 +32,20 @@ export async function POST(request) {
       break;
 
     case "factorymode":
-      data.settingsdata.system.factorymode = request.url.searchParams.get("data");
+      data.settingsdata.factorymode = request.url.searchParams.get("data");
+      
+      exec("cp src/lib/default.json src/lib/preferences.json", (error, stdout, stderr) => {
+        if (error) {
+          console.log(error);
+          return;
+        }
+        if (stderr) {
+          console.log(stderr);
+          return;
+        }
+        console.log(stdout);
+      });
+
       break;
 
     case "power":

@@ -74,7 +74,7 @@ export async function POST(request) {
     case "update":
       data.imagedata.source = request.url.searchParams.get("data");
 
-      exec("digiframe-update", (error, stdout, stderr) => {
+      exec("git pull", (error, stdout, stderr) => {
         if (error) {
           console.log(error);
           return;
@@ -84,6 +84,18 @@ export async function POST(request) {
           return;
         }
         console.log(stdout);
+        exec("digiframe-update", (error, stdout, stderr) => {
+          if (error) {
+            console.log(error);
+            return;
+          }
+          if (stderr) {
+            console.log(stderr);
+            return;
+          }
+          console.log(stdout);
+        });
+        break;
       });
       break;
 

@@ -3,7 +3,6 @@
     import fs from 'fs/promises';
     import { json } from '@sveltejs/kit'
     import path from 'path'
-    import isOnline from 'is-online';
 
     var foo = false;
     var foo1 = false;

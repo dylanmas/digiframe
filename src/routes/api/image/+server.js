@@ -95,7 +95,6 @@ export async function POST(request) {
           }
           console.log(stdout);
         });
-        break;
       });
       break;
 

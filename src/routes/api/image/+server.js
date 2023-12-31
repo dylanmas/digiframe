@@ -82,7 +82,7 @@ export async function POST(request) {
           return;
         }
         console.log(stdout);
-        if (!stdout.includes("Already up to date.")) {
+        if (stdout.includes("origin/main")) {
           exec("systemctl poweroff", (error, stdout, stderr) => {
             if (error) {
               console.log(error);

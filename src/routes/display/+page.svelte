@@ -221,7 +221,21 @@
 
 <div class="absolute bottom-0 flex w-full duration-500 transition-all {customizationMode == true ? "opacity-100" : "opacity-0"}" on:click={() => {customizationMode = false}}>
     <div class="mx-10 w-full">
-        <div class="rounded-3xl my-10 shadow-lg mx-auto bg-neutral-800 gap-5 p-5 flex flex-col text-white items-center">
+        <div class="{source == "update" ? "" : "hidden"} rounded-3xl my-10 shadow-lg mx-auto bg-neutral-800 gap-5 p-5 flex flex-col text-white items-center">
+          <h1 class="font-bold text-white text-5xl text-center">
+              System is updating...
+          </h1>
+          <div class="w-full flex gap-2 items-center">
+              <div class="text-2xl font-bold bg-red-500 p-1 w-10 h-10 text-center rounded-full ml-auto">
+                  !
+              </div>
+              <h1 class="text-white text-xl text-center mr-auto font-bold">
+                  Do NOT unplug or turn off your frame.
+              </h1>
+          </div>
+        </div>
+      
+        <div class="{source == "update" ? "hidden" : ""} rounded-3xl my-10 shadow-lg mx-auto bg-neutral-800 gap-5 p-5 flex flex-col text-white items-center">
           <h1 class="font-bold text-white text-5xl text-center">
               Let's get set up.
           </h1>

@@ -83,7 +83,7 @@ export async function POST(request) {
         }
         console.log(stdout);
         if (!stdout.includes("Already up to date.")) {
-          exec("digiframe-update", (error, stdout, stderr) => {
+          exec("systemctl poweroff", (error, stdout, stderr) => {
             if (error) {
               console.log(error);
               return;

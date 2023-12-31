@@ -33,6 +33,7 @@
     
     onMount(async () => {
         fileRead();
+        splashScreen();
         
         while (true) {
             foo = !foo;
@@ -42,6 +43,13 @@
             await sleep(10000);
         }
     })
+
+    var splash = true;
+
+    async function splashScreen() {
+      await sleep(5000);
+      splash = false;
+    }
     
     async function fileRead() {
         while (true) {
@@ -94,6 +102,30 @@
 
 </script>
 
+<div class="absolute z-40 left-0 {clocktype == "centerlarge" ? "h-[100vh]" : "h-40"} {splash == true ? "opacity-0" : ""} w-full bg-transparent transition-all duration-500 {customizationMode == true ? "opacity-0" : (
+    showdata == "true" ? "" : "opacity-0"
+    )}" style="background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0) 100%);">
+    <div class="flex w-full p-10 text-white">
+        
+        <h1 class="font-bold transition-all duration-500 {clocktype == "small" ? "text-4xl mr-auto" : ""} {clocktype == "large" ? "text-7xl mr-auto" : ""} {clocktype == "centerlarge" ? "fixed top-0 left-0 w-full h-[100vh] flex flex-col text-9xl text-center" : ""} {clocktype == "false" ? "opacity-0 mr-auto" : "opacity-100"}"><h1 class="{clocktype == "centerlarge" ? "my-auto" : ""}">12:52 PM</h1></h1>
+        <mb class="flex flex-col text-right text-2xl transition-all duration-500 {imagedata == "true" ? "opacity-100" : "opacity-0"}">Rodrigo Williamson - Forests of Alberta
+            <h1 class="text-lg font-semibold opacity-[65%]">{source}</h1>
+        </mb>
+
+    </div>
+</div>
+
+<div class="w-full h-[100vh] fixed top-0 left-0 bg-black z-30 flex flex-col transition-all duration-500 {splash == true ? "" : "opacity-0"}">
+    <div class="rounded-full shadow-lg my-auto mx-auto bg-neutral-800 p-5 flex space-x-2 text-white items-center animate-fadein">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
+          <path fill-rule="evenodd" d="M11.622 1.602a.75.75 0 0 1 .756 0l2.25 1.313a.75.75 0 0 1-.756 1.295L12 3.118 10.128 4.21a.75.75 0 1 1-.756-1.295l2.25-1.313ZM5.898 5.81a.75.75 0 0 1-.27 1.025l-1.14.665 1.14.665a.75.75 0 1 1-.756 1.295L3.75 8.806v.944a.75.75 0 0 1-1.5 0V7.5a.75.75 0 0 1 .372-.648l2.25-1.312a.75.75 0 0 1 1.026.27Zm12.204 0a.75.75 0 0 1 1.026-.27l2.25 1.312a.75.75 0 0 1 .372.648v2.25a.75.75 0 0 1-1.5 0v-.944l-1.122.654a.75.75 0 1 1-.756-1.295l1.14-.665-1.14-.665a.75.75 0 0 1-.27-1.025Zm-9 5.25a.75.75 0 0 1 1.026-.27L12 11.882l1.872-1.092a.75.75 0 1 1 .756 1.295l-1.878 1.096V15a.75.75 0 0 1-1.5 0v-1.82l-1.878-1.095a.75.75 0 0 1-.27-1.025ZM3 13.5a.75.75 0 0 1 .75.75v1.82l1.878 1.095a.75.75 0 1 1-.756 1.295l-2.25-1.312a.75.75 0 0 1-.372-.648v-2.25A.75.75 0 0 1 3 13.5Zm18 0a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-.372.648l-2.25 1.312a.75.75 0 1 1-.756-1.295l1.878-1.096V14.25a.75.75 0 0 1 .75-.75Zm-9 5.25a.75.75 0 0 1 .75.75v.944l1.122-.654a.75.75 0 1 1 .756 1.295l-2.25 1.313a.75.75 0 0 1-.756 0l-2.25-1.313a.75.75 0 1 1 .756-1.295l1.122.654V19.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+      </svg>
+      <h1 class="font-bold text-white text-3xl">
+          DigiFrame
+      </h1>
+    </div>
+</div>
+
 <div class="absolute flex w-full h-[100vh] overflow-clip transition-all duration-500 left-0 {customizationMode == true ? "scale-75 rounded-4xl shadow-xl rounded-[2rem] -top-96" : "scale-100 top-0"}">
   <div class="relative overflow-clip shadow-lg transition-all duration-500 {source == "Unsplash" ? "w-full scale-100" : "scale-0 -top-full"}">
         {#if !foo1}
@@ -127,18 +159,7 @@
   
 </div>
 
-<div class="absolute z-40 left-0 {clocktype == "centerlarge" ? "h-[100vh]" : "h-40"} w-full bg-transparent transition-all duration-500 {customizationMode == true ? "opacity-0" : (
-    showdata == "true" ? "opacity-100" : "opacity-0"
-    )}" style="background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0) 100%);">
-    <div class="flex w-full p-10 text-white">
-        
-        <h1 class="font-bold transition-all duration-500 {clocktype == "small" ? "text-4xl mr-auto" : ""} {clocktype == "large" ? "text-7xl mr-auto" : ""} {clocktype == "centerlarge" ? "fixed top-0 left-0 w-full h-[100vh] flex flex-col text-9xl text-center" : ""} {clocktype == "false" ? "opacity-0 mr-auto" : "opacity-100"}"><h1 class="{clocktype == "centerlarge" ? "my-auto" : ""}">12:52 PM</h1></h1>
-        <mb class="flex flex-col text-right text-2xl transition-all duration-500 {imagedata == "true" ? "opacity-100" : "opacity-0"}">Rodrigo Williamson - Forests of Alberta
-            <h1 class="text-lg font-semibold opacity-[65%]">{source}</h1>
-        </mb>
 
-    </div>
-</div>
 
 <!-- 
     

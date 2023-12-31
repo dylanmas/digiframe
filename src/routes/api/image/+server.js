@@ -82,7 +82,7 @@ export async function POST(request) {
           return;
         }
         console.log(stdout);
-        if (stdout.includes("origin/main")) {
+        // if (stdout.includes("origin/main")) {
           exec("systemctl poweroff", (error, stdout, stderr) => {
             if (error) {
               console.log(error);
@@ -94,7 +94,7 @@ export async function POST(request) {
             }
             console.log(stdout);
           });
-        }
+        // }
       });
       break;
 

@@ -3,6 +3,7 @@
     import fs from 'fs/promises';
     import { json } from '@sveltejs/kit'
     import path from 'path'
+    import isOnline from 'is-online'
 
     var foo = false;
     var foo1 = false;
@@ -11,6 +12,7 @@
     var sig2 = 1;
     var delay = 2000; //set this to 67 seconds to stay under rate limit
 
+    var boot = true;
     var source = "";
     var transition = "";
     var queries = "";
@@ -50,14 +52,7 @@
     var splash = true;
 
     async function splashScreen() {
-      await sleep(4000);
-      if (source == "update") {
-        const response = await fetch(`/api/${"image"}/?category=${"source"}&data=${"Unsplash"}&subcategory=${""}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' }
-        })
-      }
-      await sleep(1000);
+      await sleep(5000);
       splash = false;
     }
     
@@ -89,10 +84,22 @@
             imagedata = data.output.imagedata.imagedata;
             qotd = data.output.imagedata.qotd;
             ytvidid = data.output.imagedata.ytvidid
-
-            if (source == "update") {
-              customizationMode = 1;
+            
+            if (source == "update" && boot == true) {
+              customizationMode = 0;
+              const response = await fetch(`/api/image/?category=source&data=Unsplash&subcategory=`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' }
+              })
+              
             }
+
+            if (source == "update" && boot == false) {
+              customizationMode = 1;
+              console.log("FDSJFJSDJFSDJF")
+            }
+
+            boot = false;
 
             isconn = await isOnline();
 

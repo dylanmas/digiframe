@@ -274,7 +274,7 @@
           </div>
           <div class="w-full flex gap-2 items-center">
               <div class="text-4xl font-bold text-center rounded-full mx-auto">
-                  3C25-6F89
+                  DFY5-6F89
               </div>
           </div>
           <div class="w-full flex gap-2 items-center">

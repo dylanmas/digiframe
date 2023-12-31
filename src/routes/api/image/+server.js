@@ -74,17 +74,15 @@ export async function POST(request) {
     case "update":
       exec("git pull", (error, stdout, stderr) => {
         if (error) {
-          console.log(error)
+          console.log(error);
           return;
         }
         if (stderr) {
-          console.log(stderr)
+          console.log(stderr);
           return;
         }
         console.log(stdout);
         if (stdout == "Already up to date.\n") {
-
-
           exec("src/lib/update.sh", (error, stdout, stderr) => {
             if (error) {
               console.log(error);
@@ -95,13 +93,37 @@ export async function POST(request) {
               return;
             }
             console.log(stdout);
-         
-
           });
-
-
         }
-      })
+      });
+      break;
+
+    case "restart":
+      exec("systemctl poweroff", (error, stdout, stderr) => {
+        if (error) {
+          console.log(error);
+          return;
+        }
+        if (stderr) {
+          console.log(stderr);
+          return;
+        }
+        console.log(stdout);
+      });
+      break;
+
+    case "restart":
+      exec("systemctl reboot", (error, stdout, stderr) => {
+        if (error) {
+          console.log(error);
+          return;
+        }
+        if (stderr) {
+          console.log(stderr);
+          return;
+        }
+        console.log(stdout);
+      });
       break;
 
     default:

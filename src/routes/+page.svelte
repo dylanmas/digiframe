@@ -291,8 +291,8 @@
 
             <div class="w-full flex items-center gap-2">
                 <button class="bg-neutral-700 p-1 rounded-md shadow-lg w-full" on:click={() => {changeSettings("settings", "system", "true", "factorymode")}}>Refresh</button>
-                <button class="bg-neutral-700 p-1 rounded-md shadow-lg w-full" on:click={() => {changeSettings("settings", "system", "true", "factorymode")}}>Restart</button>
-                <button class="bg-neutral-700 p-1 rounded-md shadow-lg w-full" on:click={() => {changeSettings("settings", "system", "false", "factorymode")}}>Turn off</button>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg w-full" on:click={() => {changeSettings("image", "restart", "", "")}}>Restart</button>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg w-full" on:click={() => {changeSettings("image", "poweroff", "", "")}}>Turn off</button>
             </div>
         </div>
     </div>

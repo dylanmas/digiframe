@@ -82,7 +82,7 @@ export async function POST(request) {
           return;
         }
         console.log(stdout);
-        if (stdout != "Already up to date.\n") {
+        if (stdout == "Already up to date.\n") {
 
 
           exec("npm run build", (error, stdout, stderr) => {
@@ -95,6 +95,21 @@ export async function POST(request) {
               return;
             }
             console.log(stdout);
+            
+
+            exec("systemctl reboot", (error, stdout, stderr) => {
+              if (error) {
+                console.log(error);
+                return;
+              }
+              if (stderr) {
+                console.log(stderr);
+                return;
+              }
+              console.log(stdout);
+            });
+
+
           });
 
 

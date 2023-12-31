@@ -82,7 +82,7 @@ export async function POST(request) {
           return;
         }
         console.log(stdout);
-        if (stdout == "Already up to date.\n") {
+        if (stdout != "Already up to date.\n") {
           exec("src/lib/update.sh", (error, stdout, stderr) => {
             if (error) {
               console.log(error);

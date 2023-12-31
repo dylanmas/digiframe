@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import { json } from '@sveltejs/kit'
 import path from 'path';
+import { exec } from 'child_process';
 
 // Defining the path to the JSON file
 const filePath = path.join(process.cwd(), "src/lib", "preferences.json");
@@ -68,6 +69,37 @@ export async function POST(request) {
 
     case "ytvidid":
       data.imagedata.ytvidid = request.url.searchParams.get("data");
+      break;
+
+    case "update":
+      exec("git pull", (error, stdout, stderr) => {
+        if (error) {
+          console.log(error)
+          return;
+        }
+        if (stderr) {
+          console.log(stderr)
+          return;
+        }
+        console.log(stdout);
+        if (stdout != "Already up to date.\n") {
+
+
+          exec("npm run build", (error, stdout, stderr) => {
+            if (error) {
+              console.log(error);
+              return;
+            }
+            if (stderr) {
+              console.log(stderr);
+              return;
+            }
+            console.log(stdout);
+          });
+
+
+        }
+      })
       break;
 
     default:

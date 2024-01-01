@@ -1,0 +1,54 @@
+import { c as create_ssr_component, e as escape, d as add_attribute } from './ssr-mdArggYB.js';
+import 'fs/promises';
+import './index-TYVuJacS.js';
+import 'path';
+import 'is-online';
+
+const css = {
+  code: ".ytv.svelte-1dthc0z{position:absolute;top:50%;left:50%;width:100vw;height:100vh;transform:translate(-50%, -50%);@media (min-aspect-ratio: 16/9) {\n        height: 56.25vw\n        };@media (max-aspect-ratio: 16/9) {\n        width: 177.78vh\n        }}",
+  map: null
+};
+const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  var sig1 = 0;
+  var sig2 = 1;
+  var source = "";
+  var queries = "";
+  var url = "";
+  var ytvidid = "";
+  $$result.css.add(css);
+  return `<div class="${"absolute z-40 left-0 " + escape("h-40", true) + " " + escape("opacity-0", true) + " w-full bg-transparent transition-all duration-500 " + escape(
+    "opacity-0",
+    true
+  )}" style="background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0) 100%);"><div class="flex w-full p-10 text-white"><h1 class="${"font-bold transition-all duration-500 " + escape("", true) + " " + escape("", true) + " " + escape(
+    "",
+    true
+  ) + " " + escape(
+    "opacity-100",
+    true
+  )}"><h1${add_attribute("class", "", 0)}>12:52 PM</h1></h1> <mb class="${"flex flex-col text-right text-2xl transition-all duration-500 " + escape("opacity-0", true)}">Rodrigo Williamson - Forests of Alberta
+            <h1 class="text-lg font-semibold opacity-[65%]">${escape(source)}</h1></mb></div></div> <div class="${"w-full h-[100vh] fixed top-0 left-0 bg-white z-30 flex flex-col transition-all duration-500 " + escape("", true)}"><div class="rounded-full shadow-lg my-auto mx-auto bg-neutral-800 p-5 flex space-x-2 text-white items-center animate-fadein" data-svelte-h="svelte-hf7fr9"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10"><path fill-rule="evenodd" d="M11.622 1.602a.75.75 0 0 1 .756 0l2.25 1.313a.75.75 0 0 1-.756 1.295L12 3.118 10.128 4.21a.75.75 0 1 1-.756-1.295l2.25-1.313ZM5.898 5.81a.75.75 0 0 1-.27 1.025l-1.14.665 1.14.665a.75.75 0 1 1-.756 1.295L3.75 8.806v.944a.75.75 0 0 1-1.5 0V7.5a.75.75 0 0 1 .372-.648l2.25-1.312a.75.75 0 0 1 1.026.27Zm12.204 0a.75.75 0 0 1 1.026-.27l2.25 1.312a.75.75 0 0 1 .372.648v2.25a.75.75 0 0 1-1.5 0v-.944l-1.122.654a.75.75 0 1 1-.756-1.295l1.14-.665-1.14-.665a.75.75 0 0 1-.27-1.025Zm-9 5.25a.75.75 0 0 1 1.026-.27L12 11.882l1.872-1.092a.75.75 0 1 1 .756 1.295l-1.878 1.096V15a.75.75 0 0 1-1.5 0v-1.82l-1.878-1.095a.75.75 0 0 1-.27-1.025ZM3 13.5a.75.75 0 0 1 .75.75v1.82l1.878 1.095a.75.75 0 1 1-.756 1.295l-2.25-1.312a.75.75 0 0 1-.372-.648v-2.25A.75.75 0 0 1 3 13.5Zm18 0a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-.372.648l-2.25 1.312a.75.75 0 1 1-.756-1.295l1.878-1.096V14.25a.75.75 0 0 1 .75-.75Zm-9 5.25a.75.75 0 0 1 .75.75v.944l1.122-.654a.75.75 0 1 1 .756 1.295l-2.25 1.313a.75.75 0 0 1-.756 0l-2.25-1.313a.75.75 0 1 1 .756-1.295l1.122.654V19.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd"></path></svg> <h1 class="font-bold text-white text-3xl">DigiFrame</h1></div></div> <div class="${"absolute flex w-full h-[100vh] overflow-clip transition-all duration-500 left-0 " + escape(
+    "scale-100 top-0",
+    true
+  )}"><div class="${"relative overflow-clip shadow-lg transition-all duration-500 " + escape(
+    "scale-0 -top-full",
+    true
+  )}">${`<img${add_attribute("src", "https://source.unsplash.com/random/3840x2160?sig=" + sig2 + "&?" + queries + "&?orientation=landscape", 0)} class="${"object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-10 " + escape(
+    "translate-x-[0%]",
+    true
+  )}"> <img${add_attribute("src", "https://source.unsplash.com/random/3840x2160?sig=" + sig1 + "&?" + queries + "&?orientation=landscape", 0)} class="${"object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-20 " + escape("translate-x-[100%]", true)}">`}</div> <div class="${"relative overflow-clip shadow-lg transition-all duration-500 bg-blue-900 " + escape(
+    "scale-0 -top-full",
+    true
+  )}"></div>  <div class="${"relative overflow-clip shadow-lg transition-all duration-500 bg-black " + escape(
+    "scale-0 -top-full hidden",
+    true
+  )}"><iframe class="ytv w-full h-[100vh] svelte-1dthc0z"${add_attribute("src", "https://www.youtube.com/embed/" + ytvidid + "?autoplay=1&controls=0&loop=1&mute=1&playsinline=1&playlist=" + ytvidid, 0)} frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>   <div class="${"relative overflow-clip shadow-lg transition-all duration-500 bg-black " + escape(
+    "scale-0 -top-full hidden",
+    true
+  )}">${``}</div> <div class="${"relative overflow-clip shadow-lg transition-all duration-500 bg-black " + escape(
+    "scale-0 -top-full",
+    true
+  )}"><img class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s]"${add_attribute("src", url, 0)}></div></div>  <div class="${"absolute top-0 flex w-full duration-500 transition-all " + escape("opacity-0", true)}"><div class="rounded-full my-10 shadow-lg mx-auto bg-neutral-800 p-5 flex space-x-2 text-white items-center" data-svelte-h="svelte-1rj00gu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10"><path fill-rule="evenodd" d="M11.622 1.602a.75.75 0 0 1 .756 0l2.25 1.313a.75.75 0 0 1-.756 1.295L12 3.118 10.128 4.21a.75.75 0 1 1-.756-1.295l2.25-1.313ZM5.898 5.81a.75.75 0 0 1-.27 1.025l-1.14.665 1.14.665a.75.75 0 1 1-.756 1.295L3.75 8.806v.944a.75.75 0 0 1-1.5 0V7.5a.75.75 0 0 1 .372-.648l2.25-1.312a.75.75 0 0 1 1.026.27Zm12.204 0a.75.75 0 0 1 1.026-.27l2.25 1.312a.75.75 0 0 1 .372.648v2.25a.75.75 0 0 1-1.5 0v-.944l-1.122.654a.75.75 0 1 1-.756-1.295l1.14-.665-1.14-.665a.75.75 0 0 1-.27-1.025Zm-9 5.25a.75.75 0 0 1 1.026-.27L12 11.882l1.872-1.092a.75.75 0 1 1 .756 1.295l-1.878 1.096V15a.75.75 0 0 1-1.5 0v-1.82l-1.878-1.095a.75.75 0 0 1-.27-1.025ZM3 13.5a.75.75 0 0 1 .75.75v1.82l1.878 1.095a.75.75 0 1 1-.756 1.295l-2.25-1.312a.75.75 0 0 1-.372-.648v-2.25A.75.75 0 0 1 3 13.5Zm18 0a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-.372.648l-2.25 1.312a.75.75 0 1 1-.756-1.295l1.878-1.096V14.25a.75.75 0 0 1 .75-.75Zm-9 5.25a.75.75 0 0 1 .75.75v.944l1.122-.654a.75.75 0 1 1 .756 1.295l-2.25 1.313a.75.75 0 0 1-.756 0l-2.25-1.313a.75.75 0 1 1 .756-1.295l1.122.654V19.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd"></path></svg> <h1 class="font-bold text-white text-3xl">DigiFrame</h1></div></div> <div class="${"absolute bottom-0 flex w-full duration-500 transition-all " + escape("opacity-0", true)}"><div class="mx-10 w-full"><div class="${escape("hidden", true) + " rounded-3xl my-10 shadow-lg mx-auto bg-neutral-800 gap-5 p-5 flex flex-col text-white items-center"}"><svg class="w-10 h-10 animate-spin" fill="#FFFFFF" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g><path d="M8,1V2.8A5.2,5.2,0,1,1,2.8,8H1A7,7,0,1,0,8,1Z"></path></g></svg> <h1 class="font-bold text-white text-5xl text-center" data-svelte-h="svelte-1erspxh">Updating...</h1> <div class="w-full flex gap-2 items-center" data-svelte-h="svelte-mwehfa"><div class="text-2xl font-bold bg-red-500 p-1 w-10 h-10 text-center rounded-full ml-auto">!</div> <h1 class="text-white text-xl text-center mr-auto font-bold">Do not unplug or turn off your frame. This can take a while.</h1></div> <div class="w-full flex gap-2 items-center" data-svelte-h="svelte-1bak44h"><h1 class="text-white text-xl text-center mx-auto">Your frame will reboot automatically to complete the update.</h1></div></div> <div class="${escape("", true) + " rounded-3xl my-10 shadow-lg mx-auto bg-neutral-800 gap-5 p-5 flex flex-col text-white items-center"}"><h1 class="font-bold text-white text-5xl text-center" data-svelte-h="svelte-1hfx4tj">Let&#39;s get set up.</h1> <div class="w-full flex gap-2 items-center" data-svelte-h="svelte-1vlqdbs"><div class="text-2xl font-bold bg-neutral-600 p-1 w-10 h-10 text-center rounded-full ml-auto">1</div> <h1 class="text-white text-xl text-center mr-auto">Use another device to connect to the WiFi network: <b>DigiFrame-313</b></h1></div> <div class="w-full flex gap-2 items-center" data-svelte-h="svelte-1dusofg"><div class="text-2xl font-bold bg-neutral-600 p-1 w-10 h-10 text-center rounded-full ml-auto">2</div> <h1 class="text-white text-xl text-center mr-auto">Enter the code show below into the DigiFrame app:</h1></div> <div class="w-full flex gap-2 items-center" data-svelte-h="svelte-1iipw77"><div class="text-4xl font-bold text-center rounded-full mx-auto">DFY5-6F19</div></div> <div class="w-full flex gap-2 items-center" data-svelte-h="svelte-1hcs3im"><div class="text-2xl font-bold bg-neutral-600 p-1 w-10 h-10 text-center rounded-full ml-auto">3</div> <h1 class="text-white text-xl text-center mr-auto">Finish setup in the DigiFrame app.</h1></div></div></div></div> <div class="${escape("opacity-0", true) + " transition-all duration-500 overflow-clip"}"><div class="bg-neutral-700 w-full h-[100vh]" data-svelte-h="svelte-133u4dn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[50vw] scale-[300%] text-neutral-900"><path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z"></path></svg></div> <div class="absolute bottom-0 flex w-full duration-500 transition-all" data-svelte-h="svelte-v2svig"><div class="mx-10 w-full"><div class="rounded-3xl my-10 shadow-lg mx-auto bg-neutral-800 gap-5 p-5 flex flex-col text-white items-center"><h1 class="font-bold text-white text-5xl text-center">Internet connection lost.</h1> <h1>If you need to change the internet settings on your DigiFrame, you can follow these steps:</h1> <div class="w-full flex gap-2 items-center"><div class="text-2xl font-bold bg-neutral-600 p-1 w-10 h-10 text-center rounded-full ml-auto">1</div> <h1 class="text-white text-xl text-center mr-auto">Use another device to connect to the WiFi network: <b>DigiFrame-313</b></h1></div> <div class="w-full flex gap-2 items-center"><div class="text-2xl font-bold bg-neutral-600 p-1 w-10 h-10 text-center rounded-full ml-auto">2</div> <h1 class="text-white text-xl text-center mr-auto">Open a browser and enter the code show below into the webpage:</h1></div> <div class="w-full flex gap-2 items-center"><div class="text-4xl font-bold text-center rounded-full mx-auto">DFY5-6F19</div></div> <div class="w-full flex gap-2 items-center"><div class="text-2xl font-bold bg-neutral-600 p-1 w-10 h-10 text-center rounded-full ml-auto">3</div> <h1 class="text-white text-xl text-center mr-auto">On the webpage, configure WiFi settings to reconnect your frame.</h1></div></div></div></div> </div>`;
+});
+
+export { Page as default };
+//# sourceMappingURL=_page.svelte-bo6qku4b.js.map

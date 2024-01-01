@@ -239,15 +239,31 @@
 <div class="absolute bottom-0 flex w-full duration-500 transition-all {customizationMode == true ? "opacity-100" : "opacity-0"}" on:click={() => {customizationMode = false}}>
     <div class="mx-10 w-full">
         <div class="{source == "update" ? "" : "hidden"} rounded-3xl my-10 shadow-lg mx-auto bg-neutral-800 gap-5 p-5 flex flex-col text-white items-center">
+          
+          <svg class="w-10 h-10 animate-spin" fill="#FFFFFF" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+
+          <g>
+
+          <path d="M8,1V2.8A5.2,5.2,0,1,1,2.8,8H1A7,7,0,1,0,8,1Z"/>
+
+          </g>
+
+          </svg>
+
           <h1 class="font-bold text-white text-5xl text-center">
-              System is updating...
+              Updating...
           </h1>
           <div class="w-full flex gap-2 items-center">
               <div class="text-2xl font-bold bg-red-500 p-1 w-10 h-10 text-center rounded-full ml-auto">
                   !
               </div>
               <h1 class="text-white text-xl text-center mr-auto font-bold">
-                  Do NOT unplug or turn off your frame.
+                  Do not unplug or turn off your frame. This can take a while.
+              </h1>
+          </div>
+          <div class="w-full flex gap-2 items-center">
+              <h1 class="text-white text-xl text-center mx-auto">
+                  Your frame will reboot automatically to complete the update.
               </h1>
           </div>
         </div>

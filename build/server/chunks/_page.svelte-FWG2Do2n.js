@@ -8,6 +8,7 @@ const css = {
   code: ".ytv.svelte-1dthc0z{position:absolute;top:50%;left:50%;width:100vw;height:100vh;transform:translate(-50%, -50%);@media (min-aspect-ratio: 16/9) {\n        height: 56.25vw\n        };@media (max-aspect-ratio: 16/9) {\n        width: 177.78vh\n        }}",
   map: null
 };
+var animparams = "";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   var sig1 = 0;
   var sig2 = 1;
@@ -15,8 +16,9 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   var queries = "";
   var url = "";
   var ytvidid = "";
+  var sequencervar = [100, 200, 300, 400, 500, 600, 700, 800, 900];
   $$result.css.add(css);
-  return `<div class="${"absolute z-40 left-0 " + escape("h-40", true) + " " + escape("opacity-0", true) + " w-full bg-transparent transition-all duration-500 " + escape(
+  return `<div class="${"absolute z-40 left-0 " + escape("h-40", true) + " " + escape("", true) + " w-full bg-transparent transition-all duration-500 " + escape(
     "opacity-0",
     true
   )}" style="background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0) 100%);"><div class="flex w-full p-10 text-white"><h1 class="${"font-bold transition-all duration-500 " + escape("", true) + " " + escape("", true) + " " + escape(
@@ -26,22 +28,22 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     "opacity-100",
     true
   )}"><h1${add_attribute("class", "", 0)}>12:52 PM</h1></h1> <mb class="${"flex flex-col text-right text-2xl transition-all duration-500 " + escape("opacity-0", true)}">Rodrigo Williamson - Forests of Alberta
-            <h1 class="text-lg font-semibold opacity-[65%]">${escape(source)}</h1></mb></div></div> <div class="${"w-full h-[100vh] fixed top-0 left-0 bg-white z-30 flex flex-col transition-all duration-500 " + escape("", true)}"><div class="rounded-full shadow-lg my-auto mx-auto bg-neutral-800 p-5 flex space-x-2 text-white items-center animate-fadein" data-svelte-h="svelte-hf7fr9"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10"><path fill-rule="evenodd" d="M11.622 1.602a.75.75 0 0 1 .756 0l2.25 1.313a.75.75 0 0 1-.756 1.295L12 3.118 10.128 4.21a.75.75 0 1 1-.756-1.295l2.25-1.313ZM5.898 5.81a.75.75 0 0 1-.27 1.025l-1.14.665 1.14.665a.75.75 0 1 1-.756 1.295L3.75 8.806v.944a.75.75 0 0 1-1.5 0V7.5a.75.75 0 0 1 .372-.648l2.25-1.312a.75.75 0 0 1 1.026.27Zm12.204 0a.75.75 0 0 1 1.026-.27l2.25 1.312a.75.75 0 0 1 .372.648v2.25a.75.75 0 0 1-1.5 0v-.944l-1.122.654a.75.75 0 1 1-.756-1.295l1.14-.665-1.14-.665a.75.75 0 0 1-.27-1.025Zm-9 5.25a.75.75 0 0 1 1.026-.27L12 11.882l1.872-1.092a.75.75 0 1 1 .756 1.295l-1.878 1.096V15a.75.75 0 0 1-1.5 0v-1.82l-1.878-1.095a.75.75 0 0 1-.27-1.025ZM3 13.5a.75.75 0 0 1 .75.75v1.82l1.878 1.095a.75.75 0 1 1-.756 1.295l-2.25-1.312a.75.75 0 0 1-.372-.648v-2.25A.75.75 0 0 1 3 13.5Zm18 0a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-.372.648l-2.25 1.312a.75.75 0 1 1-.756-1.295l1.878-1.096V14.25a.75.75 0 0 1 .75-.75Zm-9 5.25a.75.75 0 0 1 .75.75v.944l1.122-.654a.75.75 0 1 1 .756 1.295l-2.25 1.313a.75.75 0 0 1-.756 0l-2.25-1.313a.75.75 0 1 1 .756-1.295l1.122.654V19.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd"></path></svg> <h1 class="font-bold text-white text-3xl">DigiFrame</h1></div></div> <div class="${"absolute flex w-full h-[100vh] overflow-clip transition-all duration-500 left-0 " + escape(
+            <h1 class="text-lg font-semibold opacity-[65%]">${escape(source)}</h1></mb></div></div> <div class="${"w-full h-[100vh] fixed top-0 left-0 bg-white z-30 flex flex-col transition-all duration-500 " + escape("opacity-0", true)}"><div class="rounded-full shadow-lg my-auto mx-auto bg-neutral-800 p-5 flex space-x-2 text-white items-center animate-fadein" data-svelte-h="svelte-hf7fr9"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10"><path fill-rule="evenodd" d="M11.622 1.602a.75.75 0 0 1 .756 0l2.25 1.313a.75.75 0 0 1-.756 1.295L12 3.118 10.128 4.21a.75.75 0 1 1-.756-1.295l2.25-1.313ZM5.898 5.81a.75.75 0 0 1-.27 1.025l-1.14.665 1.14.665a.75.75 0 1 1-.756 1.295L3.75 8.806v.944a.75.75 0 0 1-1.5 0V7.5a.75.75 0 0 1 .372-.648l2.25-1.312a.75.75 0 0 1 1.026.27Zm12.204 0a.75.75 0 0 1 1.026-.27l2.25 1.312a.75.75 0 0 1 .372.648v2.25a.75.75 0 0 1-1.5 0v-.944l-1.122.654a.75.75 0 1 1-.756-1.295l1.14-.665-1.14-.665a.75.75 0 0 1-.27-1.025Zm-9 5.25a.75.75 0 0 1 1.026-.27L12 11.882l1.872-1.092a.75.75 0 1 1 .756 1.295l-1.878 1.096V15a.75.75 0 0 1-1.5 0v-1.82l-1.878-1.095a.75.75 0 0 1-.27-1.025ZM3 13.5a.75.75 0 0 1 .75.75v1.82l1.878 1.095a.75.75 0 1 1-.756 1.295l-2.25-1.312a.75.75 0 0 1-.372-.648v-2.25A.75.75 0 0 1 3 13.5Zm18 0a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-.372.648l-2.25 1.312a.75.75 0 1 1-.756-1.295l1.878-1.096V14.25a.75.75 0 0 1 .75-.75Zm-9 5.25a.75.75 0 0 1 .75.75v.944l1.122-.654a.75.75 0 1 1 .756 1.295l-2.25 1.313a.75.75 0 0 1-.756 0l-2.25-1.313a.75.75 0 1 1 .756-1.295l1.122.654V19.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd"></path></svg> <h1 class="font-bold text-white text-3xl">DigiFrame</h1></div></div> <div class="${"absolute flex w-full h-[100vh] overflow-clip transition-all duration-500 left-0 " + escape(
     "scale-100 top-0",
     true
   )}"><div class="${"relative overflow-clip shadow-lg transition-all duration-500 " + escape(
     "scale-0 -top-full",
     true
-  )}">${`<img${add_attribute("src", "https://source.unsplash.com/random/3840x2160?sig=" + sig2 + "&?" + queries + "&?orientation=landscape", 0)} class="${"object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-10 " + escape(
+  )}">${`<img${add_attribute("src", "https://source.unsplash.com/random/1920x1080?sig=" + sig2 + "&?" + queries + "&?orientation=landscape", 0)} class="${"object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-10 " + escape(
     "translate-x-[0%]",
     true
-  )}"> <img${add_attribute("src", "https://source.unsplash.com/random/3840x2160?sig=" + sig1 + "&?" + queries + "&?orientation=landscape", 0)} class="${"object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-20 " + escape("translate-x-[100%]", true)}">`}</div> <div class="${"relative overflow-clip shadow-lg transition-all duration-500 bg-blue-900 " + escape(
-    "scale-0 -top-full",
-    true
-  )}"></div>  <div class="${"relative overflow-clip shadow-lg transition-all duration-500 bg-black " + escape(
+  )}"> <img${add_attribute("src", "https://source.unsplash.com/random/1920x1080?sig=" + sig1 + "&?" + queries + "&?orientation=landscape", 0)} class="${"object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-20 " + escape("translate-x-[100%]", true)}">`}</div>  <div class="${"relative overflow-clip shadow-lg transition-all duration-500 bg-blue-900 " + escape("scale-0 -top-full", true)}"></div>  <div class="${"relative overflow-clip shadow-lg transition-all duration-500 bg-black " + escape(
     "scale-0 -top-full hidden",
     true
   )}"><iframe class="ytv w-full h-[100vh] svelte-1dthc0z"${add_attribute("src", "https://www.youtube.com/embed/" + ytvidid + "?autoplay=1&controls=0&loop=1&mute=1&playsinline=1&playlist=" + ytvidid, 0)} frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>   <div class="${"relative overflow-clip shadow-lg transition-all duration-500 bg-black " + escape(
+    "scale-0 -top-full hidden",
+    true
+  )}"><div class="w-full h-[100vh] bg-red-900 flex"><div class="${"w-[40px] h-[100vh] transition-all duration-[1s] bg-red-" + escape(sequencervar[0], true) + " " + escape(animparams, true) + " svelte-1dthc0z"}"></div> <div class="${"w-[40px] h-[100vh] transition-all duration-[1s] bg-red-" + escape(sequencervar[1], true) + " " + escape(animparams, true) + " svelte-1dthc0z"}"></div> <div class="${"w-[40px] h-[100vh] transition-all duration-[1s] bg-red-" + escape(sequencervar[2], true) + " " + escape(animparams, true) + " svelte-1dthc0z"}"></div> <div class="${"w-[40px] h-[100vh] transition-all duration-[1s] bg-red-" + escape(sequencervar[3], true) + " " + escape(animparams, true) + " svelte-1dthc0z"}"></div> <div class="${"w-[40px] h-[100vh] transition-all duration-[1s] bg-red-" + escape(sequencervar[4], true) + " " + escape(animparams, true) + " svelte-1dthc0z"}"></div> <div class="${"w-[40px] h-[100vh] transition-all duration-[1s] bg-red-" + escape(sequencervar[5], true) + " " + escape(animparams, true) + " svelte-1dthc0z"}"></div> <div class="${"w-[40px] h-[100vh] transition-all duration-[1s] bg-red-" + escape(sequencervar[6], true) + " " + escape(animparams, true) + " svelte-1dthc0z"}"></div> <div class="${"w-[40px] h-[100vh] transition-all duration-[1s] bg-red-" + escape(sequencervar[7], true) + " " + escape(animparams, true) + " svelte-1dthc0z"}"></div> <div class="${"w-[40px] h-[100vh] transition-all duration-[1s] bg-red-" + escape(sequencervar[8], true) + " " + escape(animparams, true) + " svelte-1dthc0z"}"></div></div></div>  <div class="${"relative overflow-clip shadow-lg transition-all duration-500 bg-black " + escape(
     "scale-0 -top-full hidden",
     true
   )}">${``}</div> <div class="${"relative overflow-clip shadow-lg transition-all duration-500 bg-black " + escape(
@@ -51,4 +53,4 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 
 export { Page as default };
-//# sourceMappingURL=_page.svelte-bo6qku4b.js.map
+//# sourceMappingURL=_page.svelte-FWG2Do2n.js.map

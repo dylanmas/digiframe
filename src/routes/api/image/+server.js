@@ -71,9 +71,13 @@ export async function POST(request) {
       data.imagedata.ytvidid = request.url.searchParams.get("data");
       break;
 
+    case "patterntype":
+      data.imagedata.patterntype = request.url.searchParams.get("data");
+      break;
+
     case "update":
       data.imagedata.source = request.url.searchParams.get("data");
-      
+
       exec("digiframe-update", (error, stdout, stderr) => {
         if (error) {
           console.log(error);

@@ -133,6 +133,15 @@
                 <h1 class="text-center">Image</h1>
             </button>
 
+            <button on:click={() => {changeSettings("image", "source", "Pattern")}} class="flex flex-col bg-neutral-600 text-white rounded-lg shadow-md items-center transition-all duration-500 {data.output.imagedata.source == "Pattern" ? "scale-110 brightness-110" : "scale-90 brightness-90"}">
+                <div class="w-20 h-20 rounded-t-lg shadow-md bg-green-500 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 mx-auto text-white">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+                    </svg>
+                </div>
+                <h1 class="text-center">Pattern</h1>
+            </button>
+
         </div>
 
         <div class="flex flex-col bg-neutral-900 p-2 rounded-lg gap-2">
@@ -151,6 +160,15 @@
                 <h1 class="mr-auto">Transition time (ms)</h1>
                 <input class="shadow-md bg-neutral-700 max-w-96 min-w-24 rounded-md px-1" placeholder="Enter time" bind:value={transitiontime} />
                 <button class="bg-neutral-700 p-1 rounded-md shadow-lg" on:click={() => {changeSettings("image", "delayseconds", transitiontime, "")}}>Apply</button>
+            </div>
+
+            <div class="w-full flex items-center bg-neutral-800 rounded-md pl-2 gap-2">
+                <h1 class="mr-auto">Presets</h1>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg {data.output.imagedata.patterntype == "0" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "patterntype", "0", "")}}>Diamond</button>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg {data.output.imagedata.patterntype == "1" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "patterntype", "1", "")}}>Bouncing Squares</button>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg {data.output.imagedata.patterntype == "2" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "patterntype", "2", "")}}>Rain</button>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg {data.output.imagedata.patterntype == "3" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "patterntype", "3", "")}}>Side Rain</button>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg {data.output.imagedata.patterntype == "4" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "patterntype", "4", "")}}>Lines</button>
             </div>
 
             <div class="w-full flex items-center bg-neutral-800 rounded-md pl-2 gap-2 {data.output.imagedata.source == "Pexels" ? "" : (data.output.imagedata.source == "Unsplash" ? "" : "hidden")}">

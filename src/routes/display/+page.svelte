@@ -26,6 +26,7 @@
     var qotd = "";
     var ytvidid = "";
     var quote = "";
+    var patterntype = "0";
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -39,6 +40,7 @@
     onMount(async () => {
         fileRead();
         splashScreen();
+        sequencer();
         
         while (true) {
             foo = !foo;
@@ -49,7 +51,8 @@
         }
     })
 
-    var splash = true;
+    //NOTE
+    var splash = false;
 
     async function splashScreen() {
       await sleep(5000);
@@ -84,6 +87,7 @@
             imagedata = data.output.imagedata.imagedata;
             qotd = data.output.imagedata.qotd;
             ytvidid = data.output.imagedata.ytvidid
+            patterntype = data.output.imagedata.patterntype
             
             if (source == "update" && boot == true) {
               customizationMode = 0;
@@ -122,6 +126,36 @@
     var selected = 0;
     var selectedNames = ["Unsplash", "Color", "Custom Image"];
 
+    // Animation section
+
+    var screenWidth = 0;
+    var bars = 1
+    var barscolor = "red"
+    var animparams = ""
+    var prevpat = "";
+
+    var sequencervar = ["","hidden","hidden","hidden","hidden","hidden","hidden","hidden","hidden",]
+    async function sequencer() {
+      if (screenWidth > 480) {
+        bars = screenWidth / 480
+        bars = Math.ceil(bars)
+      }
+      while (true) {
+        if (source != "Pattern" || prevpat != patterntype) {
+          sequencervar = ["","hidden","hidden","hidden","hidden","hidden","hidden","hidden","hidden",]
+        }
+
+        prevpat = patterntype;
+        let asdf = ""
+        sequencervar.shift()
+        sequencervar[8] = asdf
+        console.log(patterntype)
+        await sleep(2000)
+      }
+    }
+
+
+
 </script>
 
 <div class="absolute z-40 left-0 {clocktype == "centerlarge" ? "h-[100vh]" : "h-40"} {splash == true ? "opacity-0" : ""} w-full bg-transparent transition-all duration-500 {customizationMode == true ? "opacity-0" : (
@@ -137,7 +171,7 @@
     </div>
 </div>
 
-<div class="w-full h-[100vh] fixed top-0 left-0 bg-white z-30 flex flex-col transition-all duration-500 {splash == true ? "" : "opacity-0"}">
+<div bind:clientWidth={screenWidth} class="w-full h-[100vh] fixed top-0 left-0 bg-white z-30 flex flex-col transition-all duration-500 {splash == true ? "" : "opacity-0"}">
     <div class="rounded-full shadow-lg my-auto mx-auto bg-neutral-800 p-5 flex space-x-2 text-white items-center animate-fadein">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
           <path fill-rule="evenodd" d="M11.622 1.602a.75.75 0 0 1 .756 0l2.25 1.313a.75.75 0 0 1-.756 1.295L12 3.118 10.128 4.21a.75.75 0 1 1-.756-1.295l2.25-1.313ZM5.898 5.81a.75.75 0 0 1-.27 1.025l-1.14.665 1.14.665a.75.75 0 1 1-.756 1.295L3.75 8.806v.944a.75.75 0 0 1-1.5 0V7.5a.75.75 0 0 1 .372-.648l2.25-1.312a.75.75 0 0 1 1.026.27Zm12.204 0a.75.75 0 0 1 1.026-.27l2.25 1.312a.75.75 0 0 1 .372.648v2.25a.75.75 0 0 1-1.5 0v-.944l-1.122.654a.75.75 0 1 1-.756-1.295l1.14-.665-1.14-.665a.75.75 0 0 1-.27-1.025Zm-9 5.25a.75.75 0 0 1 1.026-.27L12 11.882l1.872-1.092a.75.75 0 1 1 .756 1.295l-1.878 1.096V15a.75.75 0 0 1-1.5 0v-1.82l-1.878-1.095a.75.75 0 0 1-.27-1.025ZM3 13.5a.75.75 0 0 1 .75.75v1.82l1.878 1.095a.75.75 0 1 1-.756 1.295l-2.25-1.312a.75.75 0 0 1-.372-.648v-2.25A.75.75 0 0 1 3 13.5Zm18 0a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-.372.648l-2.25 1.312a.75.75 0 1 1-.756-1.295l1.878-1.096V14.25a.75.75 0 0 1 .75-.75Zm-9 5.25a.75.75 0 0 1 .75.75v.944l1.122-.654a.75.75 0 1 1 .756 1.295l-2.25 1.313a.75.75 0 0 1-.756 0l-2.25-1.313a.75.75 0 1 1 .756-1.295l1.122.654V19.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
@@ -150,23 +184,165 @@
 
 <div class="absolute flex w-full h-[100vh] overflow-clip transition-all duration-500 left-0 {customizationMode == true ? "scale-75 rounded-4xl shadow-xl rounded-[2rem] -top-96" : "scale-100 top-0"}">
   <div class="relative overflow-clip shadow-lg transition-all duration-500 {source == "Unsplash" ? "w-full scale-100" : "scale-0 -top-full"}">
-        {#if !foo1}
-        <img src={"https://source.unsplash.com/random/3840x2160?sig="+sig2+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-10 {foo == true ? "-translate-x-[50%] brightness-50" : "translate-x-[0%]"}" />
-        <img src={"https://source.unsplash.com/random/3840x2160?sig="+sig1+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-20 {foo == true ? "translate-x-[0%]" : "translate-x-[100%]"}" />
-        {:else}
-        <img src={"https://source.unsplash.com/random/3840x2160?sig="+sig1+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-10 {foo == false ? "-translate-x-[50%] brightness-50" : "translate-x-[0%]"}" />
-        <img src={"https://source.unsplash.com/random/3840x2160?sig="+sig2+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-20 {foo == false ? "translate-x-[0%]" : "translate-x-[100%]"}" />
-        {/if}
+    {#if source == "Unsplash"}
+    {#if !foo1}
+    <img src={"https://source.unsplash.com/random/1280x720?sig="+sig2+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-10 {foo == true ? "-translate-x-[50%] brightness-50" : "translate-x-[0%]"}" />
+    <img src={"https://source.unsplash.com/random/1280x720?sig="+sig1+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-20 {foo == true ? "translate-x-[0%]" : "translate-x-[100%]"}" />
+    {:else}
+    <img src={"https://source.unsplash.com/random/1280x720?sig="+sig1+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-10 {foo == false ? "-translate-x-[50%] brightness-50" : "translate-x-[0%]"}" />
+    <img src={"https://source.unsplash.com/random/1280x720?sig="+sig2+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-20 {foo == false ? "translate-x-[0%]" : "translate-x-[100%]"}" />
+    {/if}
+    {/if}
   </div>
 
+  <!--NOTE-->
   <div class="relative overflow-clip shadow-lg transition-all duration-500 bg-blue-900 {source == "Color" ? "w-full scale-100" : "scale-0 -top-full"}">   
   </div>
 
-  <!-- {#if source == "YouTube"} -->
-  <div class="relative overflow-clip shadow-lg transition-all duration-500 bg-black {source == "YouTube" ? "w-full" : "scale-0 -top-full hidden"}">   
+  <!--  -->
+  <div class="relative overflow-clip shadow-lg transition-all duration-500 bg-black {source == "YouTube" ? "w-full" : "scale-0 -top-full"}">   
+    {#if source == "YouTube"}
     <iframe class="ytv w-full h-[100vh]" src={'https://www.youtube.com/embed/'+ ytvidid +'?autoplay=1&controls=0&loop=1&mute=1&playsinline=1&playlist=' + ytvidid} frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    {/if}
   </div>
-  <!-- {/if} -->
+  <!--  -->
+
+  <!--NOTE-->
+  <div class="relative overflow-clip shadow-lg transition-all duration-500 bg-black {source == "Pattern" ? "w-full" : "scale-0 -top-full"}">   
+    
+    <!-- Different gradients to test with:
+      linear-gradient(180deg, rgba(255,0,0,1) 0%, rgba(194,0,0,1) 12.5%, rgba(128,0,0,1) 25%, rgba(194,0,0,1) 37.5%, rgba(255,0,0,1) 50%, rgba(194,0,0,1) 62.5%, rgba(128,0,0,1) 75%, rgba(194,0,0,1) 88%, rgba(255,0,0,1) 100%);
+      linear-gradient(180deg, rgba(255,0,0,1) 0%, rgba(128,0,0,1) 12.5%, rgba(0,0,0,1) 25%, rgba(128,0,0,1) 37.5%, rgba(255,0,0,1) 50%, rgba(128,0,0,1) 62.5%, rgba(0,0,0,1) 75%, rgba(128,0,0,1) 88%, rgba(255,0,0,1) 100%);
+      blue
+      linear-gradient(180deg, rgba(0,104,126,1) 0%, rgba(0,54,65,1) 12.5%, rgba(0,0,0,1) 25%, rgba(0,54,65,1) 37.5%, rgba(0,104,126,1) 50%, rgba(0,54,65,1) 62.5%, rgba(0,0,0,1) 75%, rgba(0,54,65,1) 88%, rgba(0,104,126,1) 100%);
+      linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);
+    -->
+    
+    {#if patterntype == "0"}
+      <div class="w-full h-[100vh] bg-black flex">
+        {#if source == "Pattern"}
+        {#each Array(bars) as i}
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[0]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[5]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[5]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        {/each}  
+        {/if}
+      </div>
+
+    {:else if patterntype == "1"}
+      <div class="absolute z-10 w-full v-[100vh] bg-white">
+        <div class="bg"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
+      </div>
+
+    {:else if patterntype == "2"}
+      <div class="w-full h-[100vh] bg-black flex rotate-180">
+        {#if source == "Pattern"}
+        {#each Array(bars) as i}
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[0]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[0]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[5]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[0]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[5]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        {/each}  
+        {/if}
+      </div>
+
+    {:else if patterntype == "3"}
+      <div class="w-full h-[100vh] bg-black flex flex-col rotate-180">
+        {#if source == "Pattern"}
+        {#each Array(bars) as i}
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[0]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[6]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[2]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[1]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[3]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[2]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[3]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[6]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[1]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[4]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[1]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[2]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[3]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[6]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[0]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[4]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[5]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[6]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[2]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[6]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[0]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[4]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[5]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[3]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        {/each}  
+        {/if}
+      </div>
+
+    {:else if patterntype == "4"}
+      <div class="w-full h-[100vh] bg-black flex flex-col rotate-180">
+          {#if source == "Pattern"}
+          {#each Array(bars) as i}
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[0]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[0]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[5]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[0]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[5]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          {/each}  
+          {/if}
+      </div>
+    
+    {/if}
+
+  </div>
 
   <!-- Fun ones: https://dvdscreensaver.net/ - https://gradiyent.netlify.app/ -->
   <div class="relative overflow-clip shadow-lg transition-all duration-500 bg-black {source == "URL" ? "w-full scale-100" : "scale-0 -top-full hidden"}">   
@@ -355,21 +531,64 @@
 
 <style>
     
-.ytv {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100vw;
-        height: 100vh;
-        transform: translate(-50%, -50%);
+  .ytv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
 
-        @media (min-aspect-ratio: 16/9) {
-        height: 56.25vw
-        }
-
-        @media (max-aspect-ratio: 16/9) {
-        width: 177.78vh
-        }
+    @media (min-aspect-ratio: 16/9) {
+    height: 56.25vw
     }
+
+    @media (max-aspect-ratio: 16/9) {
+    width: 177.78vh
+    }
+  }
+
+  .bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+
+  .bg3 {
+    animation-duration:5s;
+  }
+
+  .content {
+    background-color:rgba(255,255,255,.8);
+    border-radius:.25em;
+    box-shadow:0 0 .25em rgba(0,0,0,.25);
+    box-sizing:border-box;
+    left:50%;
+    padding:10vmin;
+    position:fixed;
+    text-align:center;
+    top:50%;
+    transform:translate(-50%, -50%);
+  }
+
+  @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }
 
 </style>

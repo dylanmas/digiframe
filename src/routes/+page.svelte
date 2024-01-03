@@ -163,6 +163,7 @@
                 <button class="bg-neutral-700 p-1 rounded-md shadow-lg {data.output.imagedata.patterntype == "2" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "patterntype", "2", "")}}>Rain</button>
                 <button class="bg-neutral-700 p-1 rounded-md shadow-lg {data.output.imagedata.patterntype == "3" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "patterntype", "3", "")}}>Side Rain</button>
                 <button class="bg-neutral-700 p-1 rounded-md shadow-lg {data.output.imagedata.patterntype == "4" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "patterntype", "4", "")}}>Lines</button>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg {data.output.imagedata.patterntype == "5" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "patterntype", "5", "")}}>Scattered Diamond</button>
             </div>
 
             <div class="w-full flex items-center bg-neutral-800 rounded-md pl-2 gap-2 {data.output.imagedata.source == "Pexels" ? "" : (data.output.imagedata.source == "Unsplash" ? "" : "hidden")}">

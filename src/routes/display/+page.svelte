@@ -428,7 +428,29 @@
           {/each}  
           {/if}
       </div>
+    {:else if patterntype == "5"}
     
+      <div class="w-full h-[100vh] bg-black flex">
+        {#if source == "Pattern"}
+        {#each Array(bars) as i}
+        
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[40px] h-[200vh] transition-all duration-[2s] {animparams} animate-pulsepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,156,189,1) 0%, rgba(0,125,150,1) 12.5%, rgba(0,87,106,1) 25%, rgba(0,125,150,1) 37.5%, rgba(0,156,189,1) 50%, rgba(0,125,150,1) 62.5%, rgba(0,87,106,1) 75%, rgba(0,125,150,1) 88%, rgba(0,156,189,1) 100%);"></div>
+        
+        {/each}  
+        {/if}
+      </div>
+
     {/if}
 
   </div>
@@ -536,7 +558,7 @@
     </svg>
   </div>
   
-  <div class="absolute bottom-0 flex w-full duration-500 transition-all">
+  <div class="absolute z-40 bottom-0 flex w-full duration-500 transition-all">
       <div class="mx-10 w-full">
           <div class="rounded-3xl my-10 shadow-lg mx-auto bg-neutral-800 gap-5 p-5 flex flex-col text-white items-center">
             <h1 class="font-bold text-white text-5xl text-center">

@@ -41,6 +41,7 @@
         fileRead();
         splashScreen();
         sequencer();
+        WeatherDaemon();
         
         while (true) {
             foo = !foo;
@@ -149,28 +150,115 @@
         let asdf = ""
         sequencervar.shift()
         sequencervar[8] = asdf
-        console.log(patterntype)
         await sleep(2000)
       }
     }
 
+    // Weather
 
+    var weather_tempToday = 0;
+    var weather_celsius = false;
+    var weather_highToday = 0;
+    var weather_lowToday = 0;
+    var weather_tomorrow = 0;
+
+    async function WeatherDaemon() {
+
+      while (true) {
+
+
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=42.0334&longitude=-88.0834&current=temperature_2m&daily=temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit&timezone=America%2FChicago&forecast_days=3`, {
+          method: 'GET'
+        })
+    
+        const data = await response.json();
+                
+        console.log();
+        weather_tempToday = Math.round(data.current.temperature_2m)
+        weather_highToday = Math.round(data.daily.temperature_2m_max[0]) 
+        weather_lowToday = Math.round(data.daily.temperature_2m_min[0])
+        weather_tomorrow = Math.round((data.daily.temperature_2m_max[1] + data.daily.temperature_2m_min[0]) / 2)
+
+        console.log()
+
+        // await sleep(900000);
+        await sleep(100000);
+      }
+      
+    }
 
 </script>
 
-<div class="absolute z-40 left-0 {clocktype == "centerlarge" ? "h-[100vh]" : "h-40"} {splash == true ? "opacity-0" : ""} w-full bg-transparent transition-all duration-500 {customizationMode == true ? "opacity-0" : (
+<!-- Data overlay -->
+<div class="absolute w-full h-[100vh] overflow-clip">
+  <!-- Top -->
+  <div class="absolute z-40 left-0 {(clocktype == "false" && imagedata == "false") ? "opacity-0" : ""} {clocktype == "centerlarge" ? "h-[100vh]" : "h-40"} {splash == true ? "opacity-0" : ""} w-full bg-transparent transition-all duration-500 {customizationMode == true ? "opacity-0" : (
     showdata == "true" ? "" : "opacity-0"
     )}" style="background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0) 100%);">
     <div class="flex w-full p-10 text-white">
-        
-        <h1 class="font-bold transition-all duration-500 {clocktype == "small" ? "text-4xl mr-auto" : ""} {clocktype == "large" ? "text-7xl mr-auto" : ""} {clocktype == "centerlarge" ? "fixed top-0 left-0 w-full h-[100vh] flex flex-col text-9xl text-center" : ""} {clocktype == "false" ? "opacity-0 mr-auto" : "opacity-100"}"><h1 class="{clocktype == "centerlarge" ? "my-auto" : ""}">12:52 PM</h1></h1>
-        <mb class="flex flex-col text-right text-2xl transition-all duration-500 {imagedata == "true" ? "opacity-100" : "opacity-0"}">Rodrigo Williamson - Forests of Alberta
-            <h1 class="text-lg font-semibold opacity-[65%]">{source}</h1>
-        </mb>
+      
+      <h1 class="font-bold transition-all duration-500 {clocktype == "small" ? "text-4xl mr-auto" : ""} {clocktype == "large" ? "text-7xl mr-auto" : ""} {clocktype == "centerlarge" ? "fixed top-0 left-0 w-full h-[100vh] flex flex-col text-9xl text-center" : ""} {clocktype == "false" ? "opacity-0 mr-auto" : "opacity-100"}">
+        <h1 class="{clocktype == "centerlarge" ? "my-auto" : ""}">12:52 PM</h1>
+        <div class="" />
+      </h1>
+      <mb class="flex flex-col text-right text-2xl transition-all duration-500 {imagedata == "true" ? "opacity-100" : "opacity-0"}">Rodrigo Williamson - Forests of Alberta
+        <h1 class="text-lg font-semibold opacity-[65%]">{source}</h1>
+      </mb>
 
     </div>
+    
+  </div>
+
+  <!-- Bottom -->
+  <div class="absolute z-40 bottom-0 left-0 {(qotd == "false" && weather == "false") ? "opacity-0" : ""} {splash == true ? "opacity-0" : ""} w-full bg-transparent transition-all duration-500 {customizationMode == true ? "opacity-0" : (
+    showdata == "true" ? "" : "opacity-0"
+    )}" style="background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.8) 100%);">
+    <div class="flex w-full p-10 text-white">
+      
+      <h1 class="w-full transition-all duration-500 {qotd == "false" ? "opacity-0 mr-auto" : "opacity-100"}">
+        <h1 class="text-2xl">Even if you are not ready for the day, it cannot always be night.</h1>
+        <h1 class="text-lg opacity-[65%]">Donda West</h1>
+      </h1>
+
+      <h1 class=" font-bold w-full text-right transition-all duration-500 {weather == "false" ? "opacity-0 mr-auto" : "opacity-100"}">
+        <div class="flex items-center text-4xl gap-2">
+          <div class="flex flex-col text-left ml-auto">
+          
+            <div class="flex gap-2">
+              <h1 class="text-sm opacity-[65%]">HI: {weather_highToday}</h1>
+              <h1 class="text-sm opacity-[65%]">LO: {weather_lowToday}</h1>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="h-10 w-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M4.5 9.75a6 6 0 0 1 11.573-2.226 3.75 3.75 0 0 1 4.133 4.303A4.5 4.5 0 0 1 18 20.25H6.75a5.25 5.25 0 0 1-2.23-10.004 6.072 6.072 0 0 1-.02-.496Z" clip-rule="evenodd" />
+              </svg>
+              <h1>{weather_tempToday}°</h1>
+            </div>
+
+          </div>
+          
+          <div class="h-20 w-[2px] rounded-full bg-white opacity-[65%] mx-2" />
+
+          <div class="flex flex-col text-left">
+            
+            <h1 class="text-sm opacity-[65%]">TOMORROW</h1>
+            <div class="flex items-center gap-2">
+              <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+              </svg>
+              <h1>{weather_tomorrow}°</h1>
+            </div>
+
+          </div>
+        </div>
+      </h1>
+      
+    </div>
+    
+  </div>
 </div>
 
+<!-- Logo -->
 <div bind:clientWidth={screenWidth} class="w-full h-[100vh] fixed top-0 left-0 bg-white z-30 flex flex-col transition-all duration-500 {splash == true ? "" : "opacity-0"}">
     <div class="rounded-full shadow-lg my-auto mx-auto bg-neutral-800 p-5 flex space-x-2 text-white items-center animate-fadein">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
@@ -182,6 +270,7 @@
     </div>
 </div>
 
+<!-- Sources -->
 <div class="absolute flex w-full h-[100vh] overflow-clip transition-all duration-500 left-0 {customizationMode == true ? "scale-75 rounded-4xl shadow-xl rounded-[2rem] -top-96" : "scale-100 top-0"}">
   <div class="relative overflow-clip shadow-lg transition-all duration-500 {source == "Unsplash" ? "w-full scale-100" : "scale-0 -top-full"}">
     {#if source == "Unsplash"}
@@ -249,30 +338,30 @@
       <div class="w-full h-[100vh] bg-black flex rotate-180">
         {#if source == "Pattern"}
         {#each Array(bars) as i}
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[0]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[0]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[5]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[0]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[5]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
-        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
+        <div class="w-[20px] h-[200vh] animate-scalepreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,55,66,1) 65%, rgba(0,156,189,1) 100%);"></div>
         {/each}  
         {/if}
       </div>
@@ -281,30 +370,30 @@
       <div class="w-full h-[100vh] bg-black flex flex-col rotate-180">
         {#if source == "Pattern"}
         {#each Array(bars) as i}
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[0]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[6]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[2]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[1]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[3]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[2]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[3]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[6]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[1]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[4]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[1]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[2]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[3]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[6]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[0]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[4]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[5]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[6]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[2]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[6]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[0]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[4]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[5]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[3]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+        <div class="h-[20px] w-[200vw] animate-scalexpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
         {/each}  
         {/if}
       </div>
@@ -313,29 +402,29 @@
       <div class="w-full h-[100vh] bg-black flex flex-col rotate-180">
           {#if source == "Pattern"}
           {#each Array(bars) as i}
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[0]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[1]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[3]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[0]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[5]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[2]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[6]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[0]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[4]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
-          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[5]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
+          <div class="h-[20px] w-[200vw] animate-scalelpreset {sequencervar[Math.floor(Math.random() * 8)]}" style="background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,156,189,1) 100%);"></div>
           {/each}  
           {/if}
       </div>
@@ -357,50 +446,7 @@
   
 </div>
 
-
-
-<!-- 
-    
-    <div class="absolute right-0 flex h-[100vh] duration-500 transition-all {customizationMode == true ? "opacity-100" : "opacity-0"}">
-      <div class="rounded-full mx-10 shadow-lg my-auto bg-neutral-800 p-3 gap-3 flex flex-col">
-        <button class="rounded-full bg-red-500 text-white p-4 transition-all duration-200 hover:scale-110 hover:bg-red-400"
-          on:click={() => {customizationMode = false}}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-    
-        <button class="rounded-full bg-blue-500 text-white p-4 transition-all duration-200 hover:scale-110 hover:bg-blue-400">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-        </button>
-      </div>
-    </div>
-    
-    <div class="absolute left-0 flex h-[100vh] duration-500 transition-all {customizationMode == true ? "opacity-100" : "opacity-0"}">
-      <div class="rounded-full mx-10 shadow-lg my-auto bg-neutral-800 p-3 gap-3 flex flex-col">
-        <button class="rounded-full bg-blue-500 text-white p-4 transition-all duration-200 hover:scale-110 hover:bg-blue-400"
-          on:click={() => {changeSel("up")}}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-          </svg>
-        </button>
-        
-        <button class="rounded-full bg-blue-500 text-white p-4 transition-all duration-200 hover:scale-110 hover:bg-blue-400"
-          on:click={() => {changeSel("down")}}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-          </svg>
-        </button>
-      </div>
-    </div>
- -->
-
+<!-- Logo 2 -->
 <div class="absolute top-0 flex w-full duration-500 transition-all {customizationMode == true ? "opacity-100" : "opacity-0"}">
   <div class="rounded-full my-10 shadow-lg mx-auto bg-neutral-800 p-5 flex space-x-2 text-white items-center">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
@@ -412,6 +458,7 @@
   </div>
 </div>
 
+<!-- Update screen -->
 <div class="absolute bottom-0 flex w-full duration-500 transition-all {customizationMode == true ? "opacity-100" : "opacity-0"}" on:click={() => {customizationMode = false}}>
     <div class="mx-10 w-full">
         <div class="{source == "update" ? "" : "hidden"} rounded-3xl my-10 shadow-lg mx-auto bg-neutral-800 gap-5 p-5 flex flex-col text-white items-center">
@@ -481,6 +528,7 @@
     </div>
 </div>
 
+<!-- No connection screen -->
 <div class="{ isconn == true ? "opacity-0" : "opacity-100" } transition-all duration-500 overflow-clip">
   <div class="bg-neutral-700 w-full h-[100vh]">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[50vw] scale-[300%] text-neutral-900">

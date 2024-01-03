@@ -70,16 +70,9 @@
     <div class="bg-neutral-800 w-full p-2 rounded-lg shadow-xl mt-2">
         <h1 class="text-2xl font-bold mb-2">My Image</h1>
         
-        <img src="https://picsum.photos/1920/1080" class="w-full h-48 rounded-t-lg shadow-lg" />
+
 
         <div class="w-full flex bg-neutral-900 p-5 text-black rounded-b-lg space-x-2 mb-2 overflow-x-scroll">
-
-            <div class="flex p-5 flex-col bg-neutral-600 text-white text-center rounded-lg shadow-md w-100">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="mx-auto w-6 h-6 mt-auto">
-                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-                </svg>
-                <h1 class="mb-auto">Preview</h1>
-            </div>
 
             <button on:click={() => {changeSettings("image", "source", "Unsplash")}} class="flex flex-col bg-neutral-600 text-white rounded-lg shadow-md items-center transition-all duration-500 {data.output.imagedata.source == "Unsplash" ? "scale-110 brightness-110" : "scale-90 brightness-90"}">
                 <div class="w-20 h-20 rounded-t-lg shadow-md bg-white flex items-center">
@@ -88,13 +81,15 @@
                 <h1 class="text-center">Unsplash</h1>
             </button>
 
-            <button on:click={() => {changeSettings("image", "source", "Pexels")}} class="flex flex-col bg-neutral-600 text-white rounded-lg shadow-md items-center transition-all duration-500 {data.output.imagedata.source == "Pexels" ? "scale-110 brightness-110" : "scale-90 brightness-90"}">
-                <div class="w-20 h-20 rounded-t-lg shadow-md bg-green-400 flex items-center">
-                    <svg class="mx-auto fill-white" width="38px" height="38px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><title>Pexels icon</title><path d="M1.5 0A1.5 1.5 0 000 1.5v21A1.5 1.5 0 001.5 24h21a1.5 1.5 0 001.5-1.5v-21A1.5 1.5 0 0022.5 0h-21zm6.75 6.75h5.2715a3.843 3.843 0 01.627 7.6348V17.25H8.25V6.75zm1.5 1.5v7.5h2.8984v-2.8145h.873a2.343 2.343 0 100-4.6855H9.75Z"/></svg>
+            <button on:click={() => {changeSettings("image", "source", "Image")}} class="flex flex-col bg-neutral-600 text-white rounded-lg shadow-md items-center transition-all duration-500 {data.output.imagedata.source == "Image" ? "scale-110 brightness-110" : "scale-90 brightness-90"}">
+                <div class="w-20 h-20 rounded-t-lg shadow-md bg-purple-500 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 mx-auto text-white">
+                    <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
+                    </svg>
                 </div>
-                <h1 class="text-center">Pexels</h1>
+                <h1 class="text-center">Image</h1>
             </button>
-
+            
             <button on:click={() => {changeSettings("image", "source", "Color")}} class="flex flex-col bg-neutral-600 text-white rounded-lg shadow-md items-center transition-all duration-500 {data.output.imagedata.source == "Color" ? "scale-110 brightness-110" : "scale-90 brightness-90"}">
                 <div class="w-20 h-20 rounded-t-lg shadow-md bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-300 via-blue-500 to-purple-600 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 mx-auto text-white">
@@ -124,22 +119,21 @@
                 <h1 class="text-center">URL</h1>
             </button>
 
-            <button on:click={() => {changeSettings("image", "source", "Image")}} class="flex flex-col bg-neutral-600 text-white rounded-lg shadow-md items-center transition-all duration-500 {data.output.imagedata.source == "Image" ? "scale-110 brightness-110" : "scale-90 brightness-90"}">
-                <div class="w-20 h-20 rounded-t-lg shadow-md bg-purple-500 flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 mx-auto text-white">
-                    <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-                    </svg>
-                </div>
-                <h1 class="text-center">Image</h1>
-            </button>
 
             <button on:click={() => {changeSettings("image", "source", "Pattern")}} class="flex flex-col bg-neutral-600 text-white rounded-lg shadow-md items-center transition-all duration-500 {data.output.imagedata.source == "Pattern" ? "scale-110 brightness-110" : "scale-90 brightness-90"}">
-                <div class="w-20 h-20 rounded-t-lg shadow-md bg-green-500 flex items-center">
+                <div class="w-20 h-20 rounded-t-lg shadow-md bg-blue-500 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 mx-auto text-white">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
                     </svg>
                 </div>
                 <h1 class="text-center">Pattern</h1>
+            </button>
+
+            <button on:click={() => {changeSettings("image", "source", "Spotify")}} class="flex flex-col bg-neutral-600 text-white rounded-lg shadow-md items-center transition-all duration-500 {data.output.imagedata.source == "Spotify" ? "scale-110 brightness-110" : "scale-90 brightness-90"}">
+                <div class="w-20 h-20 rounded-t-lg shadow-md bg-green-500 flex items-center">
+                    <svg fill="#FFFFFF" class="w-10 h-10 mx-auto" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.61 16.906c0-.002 0-.004 0-.007 0-.34-.187-.636-.464-.791l-.005-.002c-1.922-1.131-4.235-1.8-6.703-1.8-.099 0-.197.001-.296.003h.015c-1.598.016-3.142.208-4.626.559l.142-.028c-.373.047-.659.363-.659.746 0 .024.001.047.003.07v-.003.012c0 .205.081.391.212.528.132.14.318.227.525.227.01 0 .021 0 .031-.001h-.001c.225-.034.42-.077.611-.133l-.032.008c1.136-.255 2.444-.407 3.786-.422h.01c.075-.002.164-.003.253-.003 2.193 0 4.246.599 6.005 1.642l-.054-.03c.146.097.323.159.513.172h.003.001c.405 0 .734-.328.734-.734 0-.006 0-.011 0-.017v.001zm1.5-3.36c0-.01 0-.021 0-.032 0-.395-.219-.74-.542-.918l-.005-.003c-2.358-1.387-5.195-2.207-8.223-2.207-.118 0-.237.001-.354.004h.018c-1.686.001-3.316.24-4.858.687l.123-.031c-.432.089-.753.466-.753.919 0 .029.001.057.004.085v-.004.004c0 .516.418.934.934.934h.004c.218-.028.414-.072.603-.131l-.024.007c1.168-.328 2.509-.516 3.894-.516h.027-.001c.099-.002.216-.004.334-.004 2.683 0 5.198.721 7.361 1.979l-.07-.038c.169.108.371.181.588.203h.006.004c.516 0 .934-.418.934-.934 0-.001 0-.003 0-.004zm1.69-3.874c.001-.015.001-.034.001-.052 0-.449-.251-.839-.62-1.039l-.006-.003c-1.32-.758-2.851-1.354-4.472-1.707l-.106-.019c-1.596-.372-3.429-.586-5.312-.586-.017 0-.034 0-.05 0h.003c-.084-.001-.184-.002-.284-.002-1.923 0-3.784.269-5.546.771l.142-.035c-.243.074-.448.214-.6.398l-.002.002c-.15.191-.241.436-.241.702 0 .02 0 .039.001.059v-.003.029c0 .305.122.582.321.784.196.203.471.328.775.328h.032-.002c.23-.02.443-.064.645-.131l-.02.006c1.359-.369 2.919-.58 4.529-.58.095 0 .19.001.285.002h-.014.044c1.699 0 3.352.194 4.939.56l-.147-.029c1.494.313 2.819.827 4.028 1.519l-.067-.035c.178.111.393.18.623.187h.002.01c.304 0 .579-.122.778-.32.205-.194.333-.469.333-.773 0-.012 0-.023-.001-.035v.002zm3.2 2.328v.09c0 2.187-.598 4.234-1.64 5.987l.03-.054c-1.067 1.824-2.544 3.301-4.311 4.337l-.056.03c-1.729 1.012-3.806 1.609-6.024 1.609s-4.295-.597-6.081-1.64l.057.031c-1.824-1.067-3.301-2.544-4.337-4.311l-.03-.056c-1.012-1.729-1.609-3.806-1.609-6.024s.597-4.295 1.64-6.081l-.031.057c1.067-1.824 2.544-3.301 4.311-4.337l.056-.03c1.729-1.012 3.806-1.609 6.024-1.609s4.295.597 6.081 1.64l-.057-.031c1.824 1.067 3.301 2.544 4.337 4.311l.03.056c1.012 1.699 1.61 3.746 1.61 5.933v.096-.005z"/></svg>
+                </div>
+                <h1 class="text-center">Spotify</h1>
             </button>
 
         </div>
@@ -235,7 +229,13 @@
             </div>
 
             <div class="w-full flex items-center bg-neutral-800 rounded-md pl-2 gap-2">
-                <h1 class="mr-auto">Image Data</h1>
+                <h1 class="mr-auto">Weather location</h1>
+                <input class="shadow-md bg-neutral-700 max-w-96 min-w-24 rounded-md px-1" placeholder="Enter city" bind:value={transitiontime} />
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg" on:click={() => {changeSettings("image", "delayseconds", transitiontime, "")}}>Apply</button>
+            </div>
+
+            <div class="w-full flex items-center bg-neutral-800 rounded-md pl-2 gap-2">
+                <h1 class="mr-auto">Image data</h1>
                 <button class="bg-neutral-700 p-1 rounded-md shadow-lg transition-all duration-500 {data.output.imagedata.imagedata == "false" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "imagedata", "false", "")}}>Off</button>
                 <button class="bg-neutral-700 p-1 rounded-md shadow-lg transition-all duration-500 {data.output.imagedata.imagedata == "true" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "imagedata", "true", "")}}>On</button>
             </div>
@@ -244,6 +244,12 @@
                 <h1 class="mr-auto">QOTD</h1>
                 <button class="bg-neutral-700 p-1 rounded-md shadow-lg transition-all duration-500 {data.output.imagedata.qotd == "false" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "qotd", "false", "")}}>Off</button>
                 <button class="bg-neutral-700 p-1 rounded-md shadow-lg transition-all duration-500 {data.output.imagedata.qotd == "true" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "qotd", "true", "")}}>On</button>
+            </div>
+
+            <div class="w-full flex items-center bg-neutral-800 rounded-md pl-2 gap-2">
+                <h1 class="mr-auto">Custom text</h1>
+                <input class="shadow-md bg-neutral-700 max-w-96 min-w-24 rounded-md px-1" placeholder="Enter text" bind:value={transitiontime} />
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg" on:click={() => {changeSettings("image", "delayseconds", transitiontime, "")}}>Apply</button>
             </div>
         </div>
     </div>

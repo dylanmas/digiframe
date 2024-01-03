@@ -1,0 +1,2 @@
+digiframe-begin &
+chromium --kiosk 0.0.0.0:3000/display

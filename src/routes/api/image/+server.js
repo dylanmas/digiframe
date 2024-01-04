@@ -15,13 +15,10 @@ export async function POST(request) {
   //    brightnessdisplay
   //    system
   //    power
-  console.log(request.url.searchParams.get("category"));
-  console.log(request.url.searchParams.get("data"));
 
   // Parsing the JSON data
   const data = JSON.parse(fileContents);
-  console.log(data.settingsdata.frameorientation);
-
+  
   switch (request.url.searchParams.get("category")) {
     case "source":
       data.imagedata.source = request.url.searchParams.get("data");
@@ -79,34 +76,6 @@ export async function POST(request) {
       data.imagedata.source = request.url.searchParams.get("data");
 
       exec("digiframe-update", (error, stdout, stderr) => {
-        if (error) {
-          console.log(error);
-          return;
-        }
-        if (stderr) {
-          console.log(stderr);
-          return;
-        }
-        console.log(stdout);
-      });
-      break;
-
-    case "restart":
-      exec("systemctl poweroff", (error, stdout, stderr) => {
-        if (error) {
-          console.log(error);
-          return;
-        }
-        if (stderr) {
-          console.log(stderr);
-          return;
-        }
-        console.log(stdout);
-      });
-      break;
-
-    case "restart":
-      exec("systemctl reboot", (error, stdout, stderr) => {
         if (error) {
           console.log(error);
           return;

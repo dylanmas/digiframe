@@ -27,6 +27,7 @@
     var ytvidid = "";
     var quote = "";
     var patterntype = "0";
+    var power = ""
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -38,22 +39,27 @@
     var isconn = true;
     
     onMount(async () => {
-        fileRead();
-        splashScreen();
-        sequencer();
-        WeatherDaemon();
-        
-        while (true) {
-            foo = !foo;
-            await sleep(delay);
-            foo1 = !foo1
-            foo == true ? sig2+=2 : sig1+=2;
-            await sleep(10000);
-        }
+      const response = await fetch(`/api/settings/?category=power&data=&subcategory=`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      })
+      
+      fileRead();
+      splashScreen();
+      sequencer();
+      WeatherDaemon();
+
+      while (true) {
+          foo = !foo;
+          await sleep(delay);
+          foo1 = !foo1
+          foo == true ? sig2+=2 : sig1+=2;
+          await sleep(10000);
+      }
     })
 
     //NOTE
-    var splash = false;
+    var splash = true;
 
     async function splashScreen() {
       await sleep(5000);
@@ -89,6 +95,7 @@
             qotd = data.output.imagedata.qotd;
             ytvidid = data.output.imagedata.ytvidid
             patterntype = data.output.imagedata.patterntype
+            power = data.output.settingsdata.power
             
             if (source == "update" && boot == true) {
               customizationMode = 0;
@@ -96,12 +103,10 @@
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' }
               })
-              
             }
 
             if (source == "update" && boot == false) {
               customizationMode = 1;
-              console.log("FDSJFJSDJFSDJF")
             }
 
             boot = false;
@@ -275,16 +280,15 @@
   <div class="relative overflow-clip shadow-lg transition-all duration-500 {source == "Unsplash" ? "w-full scale-100" : "scale-0 -top-full"}">
     {#if source == "Unsplash"}
     {#if !foo1}
-    <img src={"https://source.unsplash.com/random/1280x720?sig="+sig2+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-10 {foo == true ? "-translate-x-[50%] brightness-50" : "translate-x-[0%]"}" />
+    <img src={"https://source.unsplash.com/random/1280x720?sig="+sig2+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-10 {foo == true ? "-translate-x-[50%]" : "translate-x-[0%]"}" />
     <img src={"https://source.unsplash.com/random/1280x720?sig="+sig1+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-20 {foo == true ? "translate-x-[0%]" : "translate-x-[100%]"}" />
     {:else}
-    <img src={"https://source.unsplash.com/random/1280x720?sig="+sig1+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-10 {foo == false ? "-translate-x-[50%] brightness-50" : "translate-x-[0%]"}" />
+    <img src={"https://source.unsplash.com/random/1280x720?sig="+sig1+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-10 {foo == false ? "-translate-x-[50%]" : "translate-x-[0%]"}" />
     <img src={"https://source.unsplash.com/random/1280x720?sig="+sig2+"&?"+queries+"&?orientation=landscape"} class="object-cover absolute w-full h-full transition-all shadow-lg duration-[1.5s] z-20 {foo == false ? "translate-x-[0%]" : "translate-x-[100%]"}" />
     {/if}
     {/if}
   </div>
 
-  <!--NOTE-->
   <div class="relative overflow-clip shadow-lg transition-all duration-500 bg-blue-900 {source == "Color" ? "w-full scale-100" : "scale-0 -top-full"}">   
   </div>
 
@@ -296,7 +300,6 @@
   </div>
   <!--  -->
 
-  <!--NOTE-->
   <div class="relative overflow-clip shadow-lg transition-all duration-500 bg-black {source == "Pattern" ? "w-full" : "scale-0 -top-full"}">   
     
     <!-- Different gradients to test with:
@@ -599,8 +602,10 @@
   </div>
 </div>
 
+<div class="fixed top-0 left-0 bg-black w-full h-[100vh] z-50 duration-1000 transition-all {(power != "" && boot == false) ? "opacity-100" : "opacity-0"} " />
+
 <style>
-    
+  
   .ytv {
     position: absolute;
     top: 50%;

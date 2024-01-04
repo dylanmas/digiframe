@@ -10,17 +10,18 @@ return {
 	assets: new Set(["favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.emxMtF5p.js","app":"_app/immutable/entry/app.n0xdz2zd.js","imports":["_app/immutable/entry/start.emxMtF5p.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/entry/app.n0xdz2zd.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/chunks/index.jIjof7i3.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"_app/immutable/entry/start.9l58TcP7.js","app":"_app/immutable/entry/app.GmTqEs8S.js","imports":["_app/immutable/entry/start.9l58TcP7.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/entry/app.GmTqEs8S.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/chunks/index.jIjof7i3.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
-			__memo(() => import('./chunks/0-GEqIhZl5.js')),
+			__memo(() => import('./chunks/0-FkB2TGWa.js')),
 			__memo(() => import('./chunks/1-Jtq9lDIp.js')),
-			__memo(() => import('./chunks/2-6b1Y_cq6.js')),
-			__memo(() => import('./chunks/3-tZo6-RUq.js')),
-			__memo(() => import('./chunks/4-V8sDO7b7.js')),
+			__memo(() => import('./chunks/2-sPdVlsV7.js')),
+			__memo(() => import('./chunks/3-gyG-mmVT.js')),
+			__memo(() => import('./chunks/4-K3sIx2qJ.js')),
 			__memo(() => import('./chunks/5-jup64ZuC.js')),
-			__memo(() => import('./chunks/6-hA4Jy_br.js')),
-			__memo(() => import('./chunks/7-kRsh77i-.js')),
-			__memo(() => import('./chunks/8-r0MQxeHV.js'))
+			__memo(() => import('./chunks/6-FJKUSJ9x.js')),
+			__memo(() => import('./chunks/7-Az4c6_eV.js')),
+			__memo(() => import('./chunks/8-RjrC_x32.js')),
+			__memo(() => import('./chunks/9-MHsk7Oqh.js'))
 		],
 		routes: [
 			{
@@ -45,24 +46,31 @@ return {
 				endpoint: __memo(() => import('./chunks/_server-O57BEO3o.js'))
 			},
 			{
+				id: "/boot",
+				pattern: /^\/boot\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 6 },
+				endpoint: null
+			},
+			{
 				id: "/display",
 				pattern: /^\/display\/?$/,
 				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 6 },
+				page: { layouts: [0,2,], errors: [1,,], leaf: 7 },
 				endpoint: null
 			},
 			{
 				id: "/info",
 				pattern: /^\/info\/?$/,
 				params: [],
-				page: { layouts: [0,3,], errors: [1,,], leaf: 7 },
+				page: { layouts: [0,3,], errors: [1,,], leaf: 8 },
 				endpoint: null
 			},
 			{
 				id: "/webassets",
 				pattern: /^\/webassets\/?$/,
 				params: [],
-				page: { layouts: [0,4,], errors: [1,,], leaf: 8 },
+				page: { layouts: [0,4,], errors: [1,,], leaf: 9 },
 				endpoint: null
 			}
 		],

@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=digiframe
+Description=Default boot screen for DigiFrame devices
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/digiframe/animation
+ScriptFile=/usr/share/plymouth/themes/digiframe/animated-boot.script

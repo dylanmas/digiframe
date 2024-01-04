@@ -197,7 +197,7 @@
     )}" style="background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0) 100%);">
     <div class="flex w-full p-10 text-white">
       
-      <h1 class="font-bold transition-all duration-500 {clocktype == "small" ? "text-4xl mr-auto" : ""} {clocktype == "large" ? "text-7xl mr-auto" : ""} {clocktype == "centerlarge" ? "fixed top-0 left-0 w-full h-[100vh] flex flex-col text-9xl text-center" : ""} {clocktype == "false" ? "opacity-0 mr-auto" : "opacity-100"}">
+      <h1 class="font-bold text-black transition-all duration-500 {clocktype == "small" ? "text-4xl mr-auto" : ""} {clocktype == "large" ? "text-7xl mr-auto" : ""} {clocktype == "centerlarge" ? "fixed top-0 left-0 w-full h-[100vh] flex flex-col text-9xl text-center" : ""} {clocktype == "false" ? "opacity-0 mr-auto" : "opacity-100"}">
         <h1 class="{clocktype == "centerlarge" ? "my-auto" : ""}">12:52 PM</h1>
         <div class="" />
       </h1>

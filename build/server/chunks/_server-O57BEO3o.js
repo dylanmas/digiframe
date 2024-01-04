@@ -47,7 +47,7 @@ async function POST(request) {
           console.log(stdout);
         });
       } else if (data.settingsdata.power == "restart") {
-        exec("sleep 4 && ls -la", (error, stdout, stderr) => {
+        exec("sleep 4 && systemctl reboot", (error, stdout, stderr) => {
           if (error) {
             console.log(error);
             return;
@@ -74,4 +74,4 @@ async function GET() {
 }
 
 export { GET, POST };
-//# sourceMappingURL=_server-c8CBqfKj.js.map
+//# sourceMappingURL=_server-O57BEO3o.js.map

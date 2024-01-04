@@ -67,7 +67,7 @@ export async function POST(request) {
         });
         
       } else if (data.settingsdata.power == "restart") {
-        exec("sleep 4 && ls -la", (error, stdout, stderr) => {
+        exec("sleep 4 && systemctl reboot", (error, stdout, stderr) => {
           if (error) {
             console.log(error);
             return;

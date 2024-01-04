@@ -4,6 +4,7 @@
     import { json } from '@sveltejs/kit'
     import path from 'path'
     import isOnline from 'is-online'
+    import QRCode from 'easyqrcodejs'
 
     var foo = false;
     var foo1 = false;
@@ -48,6 +49,7 @@
       splashScreen();
       sequencer();
       WeatherDaemon();
+      generateCode();
 
       while (true) {
           foo = !foo;
@@ -57,6 +59,21 @@
           await sleep(10000);
       }
     })
+
+    var showqr = true;
+
+    async function generateCode() {
+      var options = {
+        text: "http://192.168.0.54:5173"
+      };
+      
+      // Create QRCode Object
+      new QRCode(document.getElementById("qrcode"), options);
+
+      await sleep(30000);
+
+      showqr = false;
+    }
 
     //NOTE
     var splash = true;
@@ -196,6 +213,20 @@
 
 <!-- Data overlay -->
 <div class="absolute w-full h-[100vh] overflow-clip">
+  <!-- QR Code -->
+  <div class="fixed z-30 h-[100vh] flex text-white transition-all duration-500 animate-fadein {showqr == false ? "-translate-x-[150%]" : ""}">
+    <div class="bg-neutral-800 my-auto p-10 rounded-3xl ml-5 shadow-lg flex flex-col items-center gap-5">
+      <h1 class="text-4xl font-bold">Control your frame:</h1>
+      <div class="p-5 bg-white rounded-3xl shadow-lg">
+        <div id="qrcode" class="" />
+      </div>
+      <h1 class="text-2xl">http://192.168.0.54:5173</h1>
+      <div class="w-full bg-neutral-500 rounded-full">
+        <div class="transition-all duration-[27s] h-1 bg-white rounded-full {splash == false ? "w-1" : "w-full"}" />
+      </div>
+    </div>
+  </div>
+
   <!-- Top -->
   <div class="absolute z-40 left-0 {(clocktype == "false" && imagedata == "false") ? "opacity-0" : ""} {clocktype == "centerlarge" ? "h-[100vh]" : "h-40"} {splash == true ? "opacity-0" : ""} w-full bg-transparent transition-all duration-500 {customizationMode == true ? "opacity-0" : (
     showdata == "true" ? "" : "opacity-0"
@@ -204,7 +235,6 @@
       
       <h1 class="font-bold transition-all duration-500 {clocktype == "small" ? "text-4xl mr-auto" : ""} {clocktype == "large" ? "text-7xl mr-auto" : ""} {clocktype == "centerlarge" ? "fixed top-0 left-0 w-full h-[100vh] flex flex-col text-9xl text-center" : ""} {clocktype == "false" ? "opacity-0 mr-auto" : "opacity-100"}">
         <h1 class="{clocktype == "centerlarge" ? "my-auto" : ""}">12:52 PM</h1>
-        <div class="" />
       </h1>
       <mb class="flex flex-col text-right text-2xl transition-all duration-500 {imagedata == "true" ? "opacity-100" : "opacity-0"}">Rodrigo Williamson - Forests of Alberta
         <h1 class="text-lg font-semibold opacity-[65%]">{source}</h1>

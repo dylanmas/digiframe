@@ -10,17 +10,18 @@ return {
 	assets: new Set(["favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.znkMhtsv.js","app":"_app/immutable/entry/app.X1FrTBQ8.js","imports":["_app/immutable/entry/start.znkMhtsv.js","_app/immutable/chunks/scheduler.V7bLW0bx.js","_app/immutable/chunks/singletons.3Dw2krxE.js","_app/immutable/entry/app.X1FrTBQ8.js","_app/immutable/chunks/scheduler.V7bLW0bx.js","_app/immutable/chunks/index.Tdekhdvl.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"_app/immutable/entry/start.r6sjfy_F.js","app":"_app/immutable/entry/app.opIGdTac.js","imports":["_app/immutable/entry/start.r6sjfy_F.js","_app/immutable/chunks/scheduler.q0GFaaJd.js","_app/immutable/chunks/singletons.K4iZrrRK.js","_app/immutable/entry/app.opIGdTac.js","_app/immutable/chunks/scheduler.q0GFaaJd.js","_app/immutable/chunks/index.rJXmzJGb.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
-			__memo(() => import('./chunks/0-70gMGE1h.js')),
-			__memo(() => import('./chunks/1-9nP9WKe0.js')),
-			__memo(() => import('./chunks/2-kS2aOqr7.js')),
-			__memo(() => import('./chunks/3-sYpDFroZ.js')),
-			__memo(() => import('./chunks/4-Lw12BuC1.js')),
-			__memo(() => import('./chunks/5-yNREm7f3.js')),
-			__memo(() => import('./chunks/6-eLKcwEUJ.js')),
-			__memo(() => import('./chunks/7-czXzXT3F.js')),
-			__memo(() => import('./chunks/8-Bq76h8lG.js'))
+			__memo(() => import('./chunks/0-h7n5alie.js')),
+			__memo(() => import('./chunks/1-9rruTUC1.js')),
+			__memo(() => import('./chunks/2-g3hDaJcQ.js')),
+			__memo(() => import('./chunks/3--QJ38jc3.js')),
+			__memo(() => import('./chunks/4-ffEuMfJX.js')),
+			__memo(() => import('./chunks/5-P_-fUzOh.js')),
+			__memo(() => import('./chunks/6-DehEuzJ5.js')),
+			__memo(() => import('./chunks/7-uByUwZJQ.js')),
+			__memo(() => import('./chunks/8-9K-_Q4Kg.js')),
+			__memo(() => import('./chunks/9-GhdS-39Y.js'))
 		],
 		routes: [
 			{
@@ -35,7 +36,7 @@ return {
 				pattern: /^\/api\/image\/?$/,
 				params: [],
 				page: null,
-				endpoint: __memo(() => import('./chunks/_server-ZBC0337W.js'))
+				endpoint: __memo(() => import('./chunks/_server-5jwTTLFh.js'))
 			},
 			{
 				id: "/api/settings",
@@ -52,17 +53,24 @@ return {
 				endpoint: null
 			},
 			{
+				id: "/err",
+				pattern: /^\/err\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 7 },
+				endpoint: null
+			},
+			{
 				id: "/info",
 				pattern: /^\/info\/?$/,
 				params: [],
-				page: { layouts: [0,3,], errors: [1,,], leaf: 7 },
+				page: { layouts: [0,3,], errors: [1,,], leaf: 8 },
 				endpoint: null
 			},
 			{
 				id: "/webassets",
 				pattern: /^\/webassets\/?$/,
 				params: [],
-				page: { layouts: [0,4,], errors: [1,,], leaf: 8 },
+				page: { layouts: [0,4,], errors: [1,,], leaf: 9 },
 				endpoint: null
 			}
 		],

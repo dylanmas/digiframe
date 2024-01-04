@@ -22,7 +22,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   ) + " " + escape("h-40", true) + " " + escape("", true) + " w-full bg-transparent transition-all duration-500 " + escape(
     "opacity-0",
     true
-  )}" style="background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0) 100%);"><div class="flex w-full p-10 text-white"><h1 class="${"font-bold text-black transition-all duration-500 " + escape("", true) + " " + escape("", true) + " " + escape(
+  )}" style="background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0) 100%);"><div class="flex w-full p-10 text-white"><h1 class="${"font-bold transition-all duration-500 " + escape("", true) + " " + escape("", true) + " " + escape(
     "",
     true
   ) + " " + escape(
@@ -51,4 +51,4 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 
 export { Page as default };
-//# sourceMappingURL=_page.svelte-GNm3OtvX.js.map
+//# sourceMappingURL=_page.svelte-naZTM3DN.js.map

@@ -30,6 +30,8 @@
     var patterntype = "0";
     var power = ""
 
+    var datetime = new Date();
+
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -130,6 +132,8 @@
 
             isconn = await isOnline();
 
+            datetime = new Date();
+
             await sleep(1000);
         }
     }
@@ -215,7 +219,7 @@
 <div class="absolute w-full h-[100vh] overflow-clip">
   <!-- QR Code -->
   <div class="fixed z-30 h-[100vh] flex text-white transition-all duration-500 animate-fadein {showqr == false ? "-translate-x-[150%]" : ""}">
-    <div class="bg-neutral-800 my-auto p-10 rounded-3xl ml-5 shadow-lg flex flex-col items-center gap-5">
+    <div class="bg-neutral-800 backdrop-blur-lg bg-opacity-50 my-auto p-10 rounded-3xl ml-5 shadow-lg flex flex-col items-center gap-5">
       <h1 class="text-4xl font-bold">Control your frame:</h1>
       <div class="p-5 bg-white rounded-3xl shadow-lg">
         <div id="qrcode" class="" />
@@ -234,7 +238,7 @@
     <div class="flex w-full p-10 text-white">
       
       <h1 class="font-bold transition-all duration-500 {clocktype == "small" ? "text-4xl mr-auto" : ""} {clocktype == "large" ? "text-7xl mr-auto" : ""} {clocktype == "centerlarge" ? "fixed top-0 left-0 w-full h-[100vh] flex flex-col text-9xl text-center" : ""} {clocktype == "false" ? "opacity-0 mr-auto" : "opacity-100"}">
-        <h1 class="{clocktype == "centerlarge" ? "my-auto" : ""}">12:52 PM</h1>
+        <h1 class="{clocktype == "centerlarge" ? "my-auto" : ""}">{datetime.getHours() > 12 ? (datetime.getHours() - 12) : (datetime.getHours() == 0 ? "12" : datetime.getHours())}:{datetime.getMinutes()} {datetime.getHours() >= 12 ? "PM" : "AM"}</h1>
       </h1>
       <mb class="flex flex-col text-right text-2xl transition-all duration-500 {imagedata == "true" ? "opacity-100" : "opacity-0"}">Rodrigo Williamson - Forests of Alberta
         <h1 class="text-lg font-semibold opacity-[65%]">{source}</h1>

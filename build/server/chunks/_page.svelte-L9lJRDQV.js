@@ -12,12 +12,13 @@ const css = {
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   var source = "";
   var url = "";
+  var datetime = /* @__PURE__ */ new Date();
   var weather_tempToday = 0;
   var weather_highToday = 0;
   var weather_lowToday = 0;
   var weather_tomorrow = 0;
   $$result.css.add(css);
-  return ` <div class="absolute w-full h-[100vh] overflow-clip"> <div class="${"fixed z-30 h-[100vh] flex text-white transition-all duration-500 animate-fadein " + escape("", true)}"><div class="bg-neutral-800 my-auto p-10 rounded-3xl ml-5 shadow-lg flex flex-col items-center gap-5"><h1 class="text-4xl font-bold" data-svelte-h="svelte-1tw52lp">Control your frame:</h1> <div class="p-5 bg-white rounded-3xl shadow-lg" data-svelte-h="svelte-f75hri"><div id="qrcode" class=""></div></div> <h1 class="text-2xl" data-svelte-h="svelte-166xs13">http://192.168.0.54:5173</h1> <div class="w-full bg-neutral-500 rounded-full"><div class="${"transition-all duration-[27s] h-1 bg-white rounded-full " + escape("w-full", true)}"></div></div></div></div>  <div class="${"absolute z-40 left-0 " + escape(
+  return ` <div class="absolute w-full h-[100vh] overflow-clip"> <div class="${"fixed z-30 h-[100vh] flex text-white transition-all duration-500 animate-fadein " + escape("", true)}"><div class="bg-neutral-800 backdrop-blur-lg bg-opacity-50 my-auto p-10 rounded-3xl ml-5 shadow-lg flex flex-col items-center gap-5"><h1 class="text-4xl font-bold" data-svelte-h="svelte-1tw52lp">Control your frame:</h1> <div class="p-5 bg-white rounded-3xl shadow-lg" data-svelte-h="svelte-f75hri"><div id="qrcode" class=""></div></div> <h1 class="text-2xl" data-svelte-h="svelte-166xs13">http://192.168.0.54:5173</h1> <div class="w-full bg-neutral-500 rounded-full"><div class="${"transition-all duration-[27s] h-1 bg-white rounded-full " + escape("w-full", true)}"></div></div></div></div>  <div class="${"absolute z-40 left-0 " + escape(
     "",
     true
   ) + " " + escape("h-40", true) + " " + escape("opacity-0", true) + " w-full bg-transparent transition-all duration-500 " + escape(
@@ -29,7 +30,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   ) + " " + escape(
     "opacity-100",
     true
-  )}"><h1${add_attribute("class", "", 0)}>12:52 PM</h1></h1> <mb class="${"flex flex-col text-right text-2xl transition-all duration-500 " + escape("opacity-0", true)}">Rodrigo Williamson - Forests of Alberta
+  )}"><h1${add_attribute("class", "", 0)}>${escape(datetime.getHours() > 12 ? datetime.getHours() - 12 : datetime.getHours() == 0 ? "12" : datetime.getHours())}:${escape(datetime.getMinutes())} ${escape(datetime.getHours() >= 12 ? "PM" : "AM")}</h1></h1> <mb class="${"flex flex-col text-right text-2xl transition-all duration-500 " + escape("opacity-0", true)}">Rodrigo Williamson - Forests of Alberta
         <h1 class="text-lg font-semibold opacity-[65%]">${escape(source)}</h1></mb></div></div>  <div class="${"absolute z-40 bottom-0 left-0 " + escape("", true) + " " + escape("opacity-0", true) + " w-full bg-transparent transition-all duration-500 " + escape(
     "opacity-0",
     true
@@ -55,4 +56,4 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 
 export { Page as default };
-//# sourceMappingURL=_page.svelte-CHlUMF8D.js.map
+//# sourceMappingURL=_page.svelte-L9lJRDQV.js.map

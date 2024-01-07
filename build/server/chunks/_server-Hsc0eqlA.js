@@ -60,9 +60,43 @@ async function POST(request) {
         });
       }
       break;
+    case "timezone":
+      exec(
+        `timedatectl set-timezone Etc/GMT${request.url.searchParams.get("subcategory") == "plus" ? "+" : "-"}${request.url.searchParams.get("data")}`,
+        (error, stdout, stderr) => {
+          if (error) {
+            console.log(error);
+            return;
+          }
+          if (stderr) {
+            console.log(stderr);
+            return;
+          }
+          console.log(stdout);
+        }
+      );
+      console.log(request.url.searchParams.get("subcategory"));
+      break;
+    case "timedate":
+      exec(
+        `timedatectl set-time Etc/GMT${request.url.searchParams.get(
+          "data"
+        )}`,
+        (error, stdout, stderr) => {
+          if (error) {
+            console.log(error);
+            return;
+          }
+          if (stderr) {
+            console.log(stderr);
+            return;
+          }
+          console.log(stdout);
+        }
+      );
+      break;
   }
   Object.assign(data, request.body);
-  console.log(data);
   const tst1 = await fs.writeFile(filePath, JSON.stringify(data));
   return json({ tst1 }, { status: 200 });
 }
@@ -74,4 +108,4 @@ async function GET() {
 }
 
 export { GET, POST };
-//# sourceMappingURL=_server-O57BEO3o.js.map
+//# sourceMappingURL=_server-Hsc0eqlA.js.map

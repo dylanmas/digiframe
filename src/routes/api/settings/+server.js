@@ -30,7 +30,7 @@ export async function POST(request) {
       break;
 
     case "factorymode":
-      console.log(data.settingsdata.factorymode)
+      console.log(data.settingsdata.factorymode);
       data.settingsdata.factorymode = request.url.searchParams.get("data");
 
       exec(
@@ -51,7 +51,7 @@ export async function POST(request) {
       break;
 
     case "power":
-      data.settingsdata.power = request.url.searchParams.get("data")
+      data.settingsdata.power = request.url.searchParams.get("data");
 
       if (data.settingsdata.power == "poweroff") {
         exec("sleep 4 && systemctl poweroff", (error, stdout, stderr) => {
@@ -65,7 +65,6 @@ export async function POST(request) {
           }
           console.log(stdout);
         });
-        
       } else if (data.settingsdata.power == "restart") {
         exec("sleep 4 && systemctl reboot", (error, stdout, stderr) => {
           if (error) {
@@ -78,8 +77,49 @@ export async function POST(request) {
           }
           console.log(stdout);
         });
-
       }
+
+      break;
+
+    case "timezone":
+      exec(
+        `timedatectl set-timezone Etc/GMT${
+          request.url.searchParams.get("subcategory") == "plus" ? "+" : "-"
+        }${request.url.searchParams.get("data")}`,
+        (error, stdout, stderr) => {
+          if (error) {
+            console.log(error);
+            return;
+          }
+          if (stderr) {
+            console.log(stderr);
+            return;
+          }
+          console.log(stdout);
+        }
+      );
+
+      console.log(request.url.searchParams.get("subcategory"))
+
+      break;
+
+    case "timedate":
+      exec(
+        `timedatectl set-time Etc/GMT${request.url.searchParams.get(
+          "data"
+        )}`,
+        (error, stdout, stderr) => {
+          if (error) {
+            console.log(error);
+            return;
+          }
+          if (stderr) {
+            console.log(stderr);
+            return;
+          }
+          console.log(stdout);
+        }
+      );
 
       break;
 
@@ -91,7 +131,6 @@ export async function POST(request) {
   Object.assign(data, request.body);
 
   // Writing the updated data back to the file
-  console.log(data);
   const tst1 = await fs.writeFile(filePath, JSON.stringify(data));
 
   // Return the updated data

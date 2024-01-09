@@ -238,7 +238,7 @@
     <div class="flex w-full p-10 text-white">
       
       <h1 class="font-bold transition-all duration-500 {clocktype == "small" ? "text-4xl mr-auto" : ""} {clocktype == "large" ? "text-7xl mr-auto" : ""} {clocktype == "centerlarge" ? "fixed top-0 left-0 w-full h-[100vh] flex flex-col text-9xl text-center" : ""} {clocktype == "false" ? "opacity-0 mr-auto" : "opacity-100"}">
-        <h1 class="{clocktype == "centerlarge" ? "my-auto" : ""}">{datetime.getHours() > 12 ? (datetime.getHours() - 12) : (datetime.getHours() == 0 ? "12" : datetime.getHours())}:{datetime.getMinutes()} {datetime.getHours() >= 12 ? "PM" : "AM"}</h1>
+        <h1 class="{clocktype == "centerlarge" ? "my-auto" : ""}">{datetime.getHours() > 12 ? (datetime.getHours() - 12) : (datetime.getHours() == 0 ? "12" : datetime.getHours())}:{datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes()} {datetime.getHours() >= 12 ? "PM" : "AM"}</h1>
       </h1>
       <mb class="flex flex-col text-right text-2xl transition-all duration-500 {imagedata == "true" ? "opacity-100" : "opacity-0"}">Rodrigo Williamson - Forests of Alberta
         <h1 class="text-lg font-semibold opacity-[65%]">{source}</h1>

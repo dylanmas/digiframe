@@ -10,7 +10,7 @@ return {
 	assets: new Set(["favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.cR4RagwZ.js","app":"_app/immutable/entry/app.oUHeih8M.js","imports":["_app/immutable/entry/start.cR4RagwZ.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/entry/app.oUHeih8M.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/chunks/index.jIjof7i3.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"_app/immutable/entry/start.ba7Irp6x.js","app":"_app/immutable/entry/app.oUHeih8M.js","imports":["_app/immutable/entry/start.ba7Irp6x.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/entry/app.oUHeih8M.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/chunks/index.jIjof7i3.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
 			__memo(() => import('./chunks/0-DGXFYgVK.js')),
 			__memo(() => import('./chunks/1-Jtq9lDIp.js')),

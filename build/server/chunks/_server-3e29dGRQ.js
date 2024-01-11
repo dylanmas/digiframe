@@ -79,9 +79,39 @@ async function POST(request) {
       break;
     case "timedate":
       exec(
-        `timedatectl set-time Etc/GMT${request.url.searchParams.get(
-          "data"
-        )}`,
+        `timedatectl set-time Etc/GMT${request.url.searchParams.get("data")}`,
+        (error, stdout, stderr) => {
+          if (error) {
+            console.log(error);
+            return;
+          }
+          if (stderr) {
+            console.log(stderr);
+            return;
+          }
+          console.log(stdout);
+        }
+      );
+      break;
+    case "brightness":
+      exec(
+        `ddcutil -d 1 setvcp 10 ${request.url.searchParams.get("data")}`,
+        (error, stdout, stderr) => {
+          if (error) {
+            console.log(error);
+            return;
+          }
+          if (stderr) {
+            console.log(stderr);
+            return;
+          }
+          console.log(stdout);
+        }
+      );
+      break;
+    case "display":
+      exec(
+        `ddcutil -d 1 setvcp D6 ${request.url.searchParams.get("data")}`,
         (error, stdout, stderr) => {
           if (error) {
             console.log(error);
@@ -108,4 +138,4 @@ async function GET() {
 }
 
 export { GET, POST };
-//# sourceMappingURL=_server-Hsc0eqlA.js.map
+//# sourceMappingURL=_server-3e29dGRQ.js.map

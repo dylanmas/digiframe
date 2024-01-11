@@ -8,6 +8,7 @@
     var ytvidid = "";
     var timezone = "";
     var timezonesign = false;
+    var brightnessval = 0;
 
     var data = {output: {
         "imagedata":{
@@ -276,7 +277,16 @@
             <h1 class="font-bold text-lg">Brightness and Display</h1>
 
             <div class="w-full flex items-center bg-neutral-800 rounded-md p-2 gap-2">
-                <input type="range" class="bg-black h-1 rounded-full w-full p-2" />
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg" on:click={() => {changeSettings("settings", "brightness", "0", "")}}>
+                0%</button>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg" on:click={() => {changeSettings("settings", "brightness", "25", "")}}>
+                25%</button>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg" on:click={() => {changeSettings("settings", "brightness", "50", "")}}>
+                50%</button>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg" on:click={() => {changeSettings("settings", "brightness", "75", "")}}>
+                75%</button>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg" on:click={() => {changeSettings("settings", "brightness", "100", "")}}>
+                100%</button>
             </div>
 
             <div class="w-full flex items-center bg-neutral-800 rounded-md pl-2 gap-2">

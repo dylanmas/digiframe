@@ -99,15 +99,13 @@ export async function POST(request) {
         }
       );
 
-      console.log(request.url.searchParams.get("subcategory"))
+      console.log(request.url.searchParams.get("subcategory"));
 
       break;
 
     case "timedate":
       exec(
-        `timedatectl set-time Etc/GMT${request.url.searchParams.get(
-          "data"
-        )}`,
+        `timedatectl set-time Etc/GMT${request.url.searchParams.get("data")}`,
         (error, stdout, stderr) => {
           if (error) {
             console.log(error);
@@ -122,6 +120,57 @@ export async function POST(request) {
       );
 
       break;
+
+    case "brightness":
+      exec(
+        `ddcutil -d 1 setvcp 10 ${request.url.searchParams.get("data")}`,
+        (error, stdout, stderr) => {
+          if (error) {
+            console.log(error);
+            return;
+          }
+          if (stderr) {
+            console.log(stderr);
+            return;
+          }
+          console.log(stdout);
+        }
+      );
+      break;
+
+    case "display":
+      // 05 - turn off
+      // 01 - turn on
+      exec(
+        `ddcutil -d 1 setvcp D6 ${request.url.searchParams.get("data")}`,
+        (error, stdout, stderr) => {
+          if (error) {
+            console.log(error);
+            return;
+          }
+          if (stderr) {
+            console.log(stderr);
+            return;
+          }
+          console.log(stdout);
+        }
+      );
+      break;
+
+      // exec(
+      //   `ddcutil -d 1 capabilities`,
+      //   (error, stdout, stderr) => {
+      //     if (error) {
+      //       console.log(error);
+      //       return;
+      //     }
+      //     if (stderr) {
+      //       console.log(stderr);
+      //       return;
+      //     }
+      //     console.log(stdout);
+      //   }
+      // );
 
     default:
       break;

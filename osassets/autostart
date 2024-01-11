@@ -1,2 +1,8 @@
+xset -dpms
+xset s off
+xset s noblank
+
+IP_ADDRESS=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
+
 digiframe-begin &
-chromium --kiosk 0.0.0.0:3000/display
+chromium --kiosk $IP_ADDRESS:5173/display

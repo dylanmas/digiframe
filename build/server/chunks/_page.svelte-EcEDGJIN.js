@@ -30,7 +30,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   ) + " " + escape(
     "opacity-100",
     true
-  )}"><h1${add_attribute("class", "", 0)}>${escape(datetime.getHours() > 12 ? datetime.getHours() - 12 : datetime.getHours() == 0 ? "12" : datetime.getHours())}:${escape(datetime.getMinutes())} ${escape(datetime.getHours() >= 12 ? "PM" : "AM")}</h1></h1> <mb class="${"flex flex-col text-right text-2xl transition-all duration-500 " + escape("opacity-0", true)}">Rodrigo Williamson - Forests of Alberta
+  )}"><h1${add_attribute("class", "", 0)}>${escape(datetime.getHours() > 12 ? datetime.getHours() - 12 : datetime.getHours() == 0 ? "12" : datetime.getHours())}:${escape(datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes())} ${escape(datetime.getHours() >= 12 ? "PM" : "AM")}</h1></h1> <mb class="${"flex flex-col text-right text-2xl transition-all duration-500 " + escape("opacity-0", true)}">Rodrigo Williamson - Forests of Alberta
         <h1 class="text-lg font-semibold opacity-[65%]">${escape(source)}</h1></mb></div></div>  <div class="${"absolute z-40 bottom-0 left-0 " + escape("", true) + " " + escape("opacity-0", true) + " w-full bg-transparent transition-all duration-500 " + escape(
     "opacity-0",
     true
@@ -56,4 +56,4 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 
 export { Page as default };
-//# sourceMappingURL=_page.svelte-L9lJRDQV.js.map
+//# sourceMappingURL=_page.svelte-EcEDGJIN.js.map

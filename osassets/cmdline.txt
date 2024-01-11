@@ -1,0 +1,1 @@
+console=tty1 console=ttyS1,115200 root=LABEL=RASPIROOT quiet splash plymouth.ignore-serial-consoles rw fsck.repair=yes net.ifnames=0 loglevel=0 logo.nologo vt.global_cursor_default=0  rootwait

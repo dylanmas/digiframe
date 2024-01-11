@@ -238,13 +238,18 @@
   </div>
 
   <!-- Top -->
-  <div class="absolute z-40 left-0 {(clocktype == "false" && imagedata == "false") ? "opacity-0" : ""} {clocktype == "centerlarge" ? "h-[100vh]" : "h-40"} {splash == true ? "opacity-0" : ""} w-full bg-transparent transition-all duration-500 {customizationMode == true ? "opacity-0" : (
+  <div class="absolute z-40 left-0 {(clocktype == "false" && imagedata == "false") ? "opacity-0" : ""} {(clocktype == "centerlarge" || clocktype == "centerlarger") ? "h-[100vh]" : "h-40"} {splash == true ? "opacity-0" : ""} w-full bg-transparent transition-all duration-500 {customizationMode == true ? "opacity-0" : (
     showdata == "true" ? "" : "opacity-0"
     )}" style="background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0) 100%);">
     <div class="flex w-full p-10 text-white">
       
-      <h1 class="font-bold transition-all duration-500 {clocktype == "small" ? "text-4xl mr-auto" : ""} {clocktype == "large" ? "text-7xl mr-auto" : ""} {clocktype == "centerlarge" ? "fixed top-0 left-0 w-full h-[100vh] flex flex-col text-9xl text-center" : ""} {clocktype == "false" ? "opacity-0 mr-auto" : "opacity-100"}">
-        <h1 class="{clocktype == "centerlarge" ? "my-auto" : ""}">{datetime.getHours() > 12 ? (datetime.getHours() - 12) : (datetime.getHours() == 0 ? "12" : datetime.getHours())}:{datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes()} {datetime.getHours() >= 12 ? "PM" : "AM"}</h1>
+      <h1 class="font-bold transition-all duration-500
+      {clocktype == "small" ? "text-4xl mr-auto" : ""}
+      {clocktype == "large" ? "text-7xl mr-auto" : ""}
+      {clocktype == "centerlarge" ? "fixed top-0 left-0 w-full h-[100vh] flex flex-col text-9xl text-center" : ""}
+      {clocktype == "centerlarger" ? "fixed top-0 left-0 w-full h-[100vh] flex flex-col text-[35vh] text-center" : ""}
+      {clocktype == "false" ? "opacity-0 mr-auto" : "opacity-100"}">
+        <h1 class="{(clocktype == "centerlarge" || clocktype == "centerlarger") ? "my-auto" : ""}">{datetime.getHours() > 12 ? (datetime.getHours() - 12) : (datetime.getHours() == 0 ? "12" : datetime.getHours())}:{datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes()} {datetime.getHours() >= 12 ? "PM" : "AM"}</h1>
       </h1>
       <mb class="flex flex-col text-right text-2xl transition-all duration-500 {imagedata == "true" ? "opacity-100" : "opacity-0"}">Rodrigo Williamson - Forests of Alberta
         <h1 class="text-lg font-semibold opacity-[65%]">{source}</h1>

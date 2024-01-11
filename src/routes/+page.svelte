@@ -219,6 +219,7 @@
 
             <div class="w-full flex items-center bg-neutral-800 rounded-md pl-2 gap-2">
                 <h1 class="mr-auto">Clock type</h1>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg transition-all duration-500 {data.output.imagedata.clocktype == "centerlarger" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "clocktype", "centerlarger", "")}}>Center Larger</button>
                 <button class="bg-neutral-700 p-1 rounded-md shadow-lg transition-all duration-500 {data.output.imagedata.clocktype == "centerlarge" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "clocktype", "centerlarge", "")}}>Center Large</button>
                 <button class="bg-neutral-700 p-1 rounded-md shadow-lg transition-all duration-500 {data.output.imagedata.clocktype == "large" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "clocktype", "large", "")}}>Large</button>
                 <button class="bg-neutral-700 p-1 rounded-md shadow-lg transition-all duration-500 {data.output.imagedata.clocktype == "small" ? "brightness-110 scale-110" : "brightness-[70%]"}" on:click={() => {changeSettings("image", "clocktype", "small", "")}}>Small</button>

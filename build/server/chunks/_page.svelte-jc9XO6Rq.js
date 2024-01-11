@@ -106,6 +106,9 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     "brightness-110 scale-110",
     true
   )}">On</button></div> <div class="w-full flex items-center bg-neutral-800 rounded-md pl-2 gap-2"><h1 class="mr-auto" data-svelte-h="svelte-gialgg">Clock type</h1> <button class="${"bg-neutral-700 p-1 rounded-md shadow-lg transition-all duration-500 " + escape(
+    "brightness-[70%]",
+    true
+  )}">Center Larger</button> <button class="${"bg-neutral-700 p-1 rounded-md shadow-lg transition-all duration-500 " + escape(
     "brightness-110 scale-110",
     true
   )}">Center Large</button> <button class="${"bg-neutral-700 p-1 rounded-md shadow-lg transition-all duration-500 " + escape(
@@ -151,4 +154,4 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 
 export { Page as default };
-//# sourceMappingURL=_page.svelte-_6bSJLkC.js.map
+//# sourceMappingURL=_page.svelte-jc9XO6Rq.js.map

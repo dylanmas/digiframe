@@ -19,7 +19,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   var weather_lowToday = 0;
   var weather_tomorrow = 0;
   $$result.css.add(css);
-  return ` <div class="absolute w-full h-[100vh] overflow-clip"> <div class="${"fixed z-30 h-[100vh] flex text-white transition-all duration-500 animate-fadein " + escape("", true)}"><div class="bg-neutral-800 backdrop-blur-lg bg-opacity-50 my-auto p-10 rounded-3xl ml-5 shadow-lg flex flex-col items-center gap-5"><h1 class="text-4xl font-bold" data-svelte-h="svelte-1tw52lp">Control your frame:</h1> <div class="p-5 bg-white rounded-3xl shadow-lg" data-svelte-h="svelte-f75hri"><div id="qrcode" class=""></div></div> <h1 class="text-2xl">http://${escape(ip)}</h1> <div class="w-full bg-neutral-500 rounded-full"><div class="${"transition-all duration-[27s] h-1 bg-white rounded-full " + escape("w-full", true)}"></div></div></div></div>  <div class="${"absolute z-40 left-0 " + escape(
+  return ` <div class="absolute w-full h-[100vh] overflow-clip"> <div class="${"fixed z-30 h-[100vh] flex text-white transition-all duration-500 animate-fadein " + escape("", true)}"><div class="bg-neutral-800 my-auto p-10 rounded-3xl ml-5 shadow-lg flex flex-col items-center gap-5"><h1 class="text-4xl font-bold" data-svelte-h="svelte-1tw52lp">Control your frame:</h1> <div class="p-5 bg-white rounded-3xl shadow-lg" data-svelte-h="svelte-f75hri"><div id="qrcode" class=""></div></div> <h1 class="text-2xl">http://${escape(ip)}</h1> <div class="w-full bg-neutral-500 rounded-full"><div class="${"transition-all duration-[27s] h-1 bg-white rounded-full " + escape("w-full", true)}"></div></div></div></div>  <div class="${"absolute z-40 left-0 " + escape(
     "",
     true
   ) + " " + escape("h-40", true) + " " + escape("opacity-0", true) + " w-full bg-transparent transition-all duration-500 " + escape(
@@ -57,4 +57,4 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 
 export { Page as default };
-//# sourceMappingURL=_page.svelte-1EjPu9-I.js.map
+//# sourceMappingURL=_page.svelte-KFwzgxIH.js.map

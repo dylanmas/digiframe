@@ -118,6 +118,7 @@
             ip = data.output.settingsdata.ip + ":5173"
             
             if (boot == true) {
+              console.log(ip);
               generateCode();
             }
 
@@ -224,7 +225,7 @@
 <div class="absolute w-full h-[100vh] overflow-clip">
   <!-- QR Code -->
   <div class="fixed z-30 h-[100vh] flex text-white transition-all duration-500 animate-fadein {showqr == false ? "-translate-x-[150%]" : ""}">
-    <div class="bg-neutral-800 backdrop-blur-lg bg-opacity-50 my-auto p-10 rounded-3xl ml-5 shadow-lg flex flex-col items-center gap-5">
+    <div class="bg-neutral-800 my-auto p-10 rounded-3xl ml-5 shadow-lg flex flex-col items-center gap-5">
       <h1 class="text-4xl font-bold">Control your frame:</h1>
       <div class="p-5 bg-white rounded-3xl shadow-lg">
         <div id="qrcode" class="" />

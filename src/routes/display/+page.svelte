@@ -224,7 +224,7 @@
 <!-- Data overlay -->
 <div class="absolute w-full h-[100vh] overflow-clip">
   <!-- QR Code -->
-  <div class="fixed z-30 h-[100vh] flex text-white transition-all duration-500 animate-fadein {showqr == false ? "-translate-x-[150%]" : ""}">
+  <div class="fixed z-50 h-[100vh] flex text-white transition-all duration-500 animate-fadein {showqr == false ? "-translate-x-[150%]" : ""}">
     <div class="bg-neutral-800 my-auto p-10 rounded-3xl ml-5 shadow-lg flex flex-col items-center gap-5">
       <h1 class="text-4xl font-bold">Control your frame:</h1>
       <div class="p-5 bg-white rounded-3xl shadow-lg">
@@ -309,7 +309,7 @@
 </div>
 
 <!-- Logo -->
-<div bind:clientWidth={screenWidth} class="w-full h-[100vh] fixed top-0 left-0 bg-white z-30 flex flex-col transition-all duration-500 {splash == true ? "" : "opacity-0"}">
+<div bind:clientWidth={screenWidth} class="w-full h-[100vh] fixed top-0 left-0 bg-white z-30 flex flex-col transition-all duration-500 z-50 {splash == true ? "" : "opacity-0"}">
     <div class="rounded-full shadow-lg my-auto mx-auto bg-neutral-800 p-5 flex space-x-2 text-white items-center animate-fadein">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
           <path fill-rule="evenodd" d="M11.622 1.602a.75.75 0 0 1 .756 0l2.25 1.313a.75.75 0 0 1-.756 1.295L12 3.118 10.128 4.21a.75.75 0 1 1-.756-1.295l2.25-1.313ZM5.898 5.81a.75.75 0 0 1-.27 1.025l-1.14.665 1.14.665a.75.75 0 1 1-.756 1.295L3.75 8.806v.944a.75.75 0 0 1-1.5 0V7.5a.75.75 0 0 1 .372-.648l2.25-1.312a.75.75 0 0 1 1.026.27Zm12.204 0a.75.75 0 0 1 1.026-.27l2.25 1.312a.75.75 0 0 1 .372.648v2.25a.75.75 0 0 1-1.5 0v-.944l-1.122.654a.75.75 0 1 1-.756-1.295l1.14-.665-1.14-.665a.75.75 0 0 1-.27-1.025Zm-9 5.25a.75.75 0 0 1 1.026-.27L12 11.882l1.872-1.092a.75.75 0 1 1 .756 1.295l-1.878 1.096V15a.75.75 0 0 1-1.5 0v-1.82l-1.878-1.095a.75.75 0 0 1-.27-1.025ZM3 13.5a.75.75 0 0 1 .75.75v1.82l1.878 1.095a.75.75 0 1 1-.756 1.295l-2.25-1.312a.75.75 0 0 1-.372-.648v-2.25A.75.75 0 0 1 3 13.5Zm18 0a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-.372.648l-2.25 1.312a.75.75 0 1 1-.756-1.295l1.878-1.096V14.25a.75.75 0 0 1 .75-.75Zm-9 5.25a.75.75 0 0 1 .75.75v.944l1.122-.654a.75.75 0 1 1 .756 1.295l-2.25 1.313a.75.75 0 0 1-.756 0l-2.25-1.313a.75.75 0 1 1 .756-1.295l1.122.654V19.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />

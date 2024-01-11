@@ -29,6 +29,7 @@
     var quote = "";
     var patterntype = "0";
     var power = ""
+    var ip = 0;
 
     var datetime = new Date();
 
@@ -51,7 +52,6 @@
       splashScreen();
       sequencer();
       WeatherDaemon();
-      generateCode();
 
       while (true) {
           foo = !foo;
@@ -66,7 +66,7 @@
 
     async function generateCode() {
       var options = {
-        text: "http://192.168.0.54:5173"
+        text: `http://${ip}`
       };
       
       // Create QRCode Object
@@ -115,7 +115,12 @@
             ytvidid = data.output.imagedata.ytvidid
             patterntype = data.output.imagedata.patterntype
             power = data.output.settingsdata.power
+            ip = data.output.settingsdata.ip + ":5173"
             
+            if (boot == true) {
+              generateCode();
+            }
+
             if (source == "update" && boot == true) {
               customizationMode = 0;
               const response = await fetch(`/api/image/?category=source&data=Unsplash&subcategory=`, {
@@ -224,7 +229,7 @@
       <div class="p-5 bg-white rounded-3xl shadow-lg">
         <div id="qrcode" class="" />
       </div>
-      <h1 class="text-2xl">http://192.168.0.54:5173</h1>
+      <h1 class="text-2xl">http://{ip}</h1>
       <div class="w-full bg-neutral-500 rounded-full">
         <div class="transition-all duration-[27s] h-1 bg-white rounded-full {splash == false ? "w-1" : "w-full"}" />
       </div>

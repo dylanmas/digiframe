@@ -8,7 +8,6 @@
     var ytvidid = "";
     var timezone = "";
     var timezonesign = false;
-    var brightnessval = 0;
 
     var data = {output: {
         "imagedata":{

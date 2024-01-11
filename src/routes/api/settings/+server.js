@@ -189,9 +189,29 @@ export async function POST(request) {
 
 export async function GET() {
   const fileContents = await fs.readFile(filePath, 'utf-8');
-  var output = await fs.readFile(filePath, 'utf-8');
+  var output = await fs.readFile(filePath, "utf-8");
+  
+  var ipaddr = 0
+  
+  exec(
+    `ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/'`,
+    async(error, stdout, stderr) => {
+      if (error) {
+        console.log(error);
+        return;
+      }
+      if (stderr) {
+        console.log(stderr);
+        return;
+      }
+      console.log(stdout);
+      output.settingsdata.ip = stdout.slice(0, -1);
+      await fs.writeFile(filePath, JSON.stringify(output));
+    }
+  );
+  
   output = JSON.parse(output);
-
+    
   // Return the updated data
   return json({output}, {status: 200})
 }

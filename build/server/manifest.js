@@ -10,14 +10,14 @@ return {
 	assets: new Set(["favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.ecRgcWKp.js","app":"_app/immutable/entry/app.s8jSy3HY.js","imports":["_app/immutable/entry/start.ecRgcWKp.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/entry/app.s8jSy3HY.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/chunks/index.jIjof7i3.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"_app/immutable/entry/start.cR4RagwZ.js","app":"_app/immutable/entry/app.oUHeih8M.js","imports":["_app/immutable/entry/start.cR4RagwZ.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/entry/app.oUHeih8M.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/chunks/index.jIjof7i3.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
 			__memo(() => import('./chunks/0-DGXFYgVK.js')),
 			__memo(() => import('./chunks/1-Jtq9lDIp.js')),
 			__memo(() => import('./chunks/2-3kq4YrhT.js')),
 			__memo(() => import('./chunks/3-dw5q93sj.js')),
 			__memo(() => import('./chunks/4-O_mPqFj6.js')),
-			__memo(() => import('./chunks/5-yoxaUjF2.js')),
+			__memo(() => import('./chunks/5-UPWaFU9q.js')),
 			__memo(() => import('./chunks/6-FJKUSJ9x.js')),
 			__memo(() => import('./chunks/7-3TOjm6mp.js')),
 			__memo(() => import('./chunks/8-RjrC_x32.js')),

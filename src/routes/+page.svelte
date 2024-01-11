@@ -33,7 +33,8 @@
                 "SSID":"ATT8R7t5m5",
                 "password":"jfkldsjklfds"
             },
-            "factorymode":"false"
+            "factorymode":"false",
+            "ip":"000.000.000.000"
         }
     }};
 

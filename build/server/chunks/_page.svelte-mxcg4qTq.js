@@ -32,7 +32,8 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
           "SSID": "ATT8R7t5m5",
           "password": "jfkldsjklfds"
         },
-        "factorymode": "false"
+        "factorymode": "false",
+        "ip": "000.000.000.000"
       }
     }
   };
@@ -154,4 +155,4 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 
 export { Page as default };
-//# sourceMappingURL=_page.svelte-jc9XO6Rq.js.map
+//# sourceMappingURL=_page.svelte-mxcg4qTq.js.map

@@ -10,7 +10,7 @@ return {
 	assets: new Set(["favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.cxPTl3xn.js","app":"_app/immutable/entry/app.hFMmzkp5.js","imports":["_app/immutable/entry/start.cxPTl3xn.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/entry/app.hFMmzkp5.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/chunks/index.jIjof7i3.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"_app/immutable/entry/start.g-wbyVY8.js","app":"_app/immutable/entry/app.hFMmzkp5.js","imports":["_app/immutable/entry/start.g-wbyVY8.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/entry/app.hFMmzkp5.js","_app/immutable/chunks/scheduler.rFedCyd7.js","_app/immutable/chunks/index.jIjof7i3.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
 			__memo(() => import('./chunks/0-FkB2TGWa.js')),
 			__memo(() => import('./chunks/1-Jtq9lDIp.js')),
@@ -43,7 +43,7 @@ return {
 				pattern: /^\/api\/settings\/?$/,
 				params: [],
 				page: null,
-				endpoint: __memo(() => import('./chunks/_server-0vcS1rU3.js'))
+				endpoint: __memo(() => import('./chunks/_server-xCrm-kM0.js'))
 			},
 			{
 				id: "/boot",

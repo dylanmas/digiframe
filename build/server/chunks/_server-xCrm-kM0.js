@@ -61,6 +61,9 @@ async function POST(request) {
       }
       break;
     case "timezone":
+      console.log(
+        `timedatectl set-timezone Etc/GMT${request.url.searchParams.get("subcategory") == "plus" ? "+" : "-"}${request.url.searchParams.get("data")}`
+      );
       exec(
         `timedatectl set-timezone Etc/GMT${request.url.searchParams.get("subcategory") == "plus" ? "+" : "-"}${request.url.searchParams.get("data")}`,
         (error, stdout, stderr) => {
@@ -154,4 +157,4 @@ async function GET() {
 }
 
 export { GET, POST };
-//# sourceMappingURL=_server-0vcS1rU3.js.map
+//# sourceMappingURL=_server-xCrm-kM0.js.map

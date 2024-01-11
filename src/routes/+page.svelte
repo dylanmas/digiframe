@@ -322,7 +322,7 @@
                 <h1 class="mr-auto">Time zone</h1>
                 <button class="shadow-md bg-neutral-700 max-w-96 min-w-24 rounded-md px-1" on:click={() => {timezonesign = !timezonesign}}>{timezonesign == true ? "+" : "-"}</button>
                 <input class="shadow-md bg-neutral-700 max-w-96 min-w-24 rounded-md px-1" placeholder="Enter GMT offset (e.g. +5)" bind:value={timezone} />
-                <button class="bg-neutral-700 p-1 rounded-md shadow-lg" on:click={() => {changeSettings("settings", "timezone", timezone, (timezonesign == true ? "plus" : "minus") )}}>Apply</button>
+                <button class="bg-neutral-700 p-1 rounded-md shadow-lg" on:click={() => {changeSettings("settings", "timezone", timezone, (timezonesign == true ? "plus" : "minus"))}}>Apply</button>
             </div>
 
             <div class="w-full flex items-center bg-neutral-800 rounded-md pl-2">
